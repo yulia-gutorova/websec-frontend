@@ -1,17 +1,33 @@
 import { useState } from "react";
 import {Link} from 'react-router-dom'
+import axios from "axios"
 export const RegistrationView = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-  e.preventDefault();
-  console.log("Username: " + username);
-  console.log("Password: " + username);  
-}
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
 
+    const user = {
+      username :  username,
+      password : password
+    }
 
+    try {
+
+      const resp = await axios.post(import.meta.env.VITE_REG_URL, user);
+      console.log("Responce: " + resp.data);
+        
+    } catch (error) {
+        console.log(error)
+    }
+
+    
+    /* navigate("/mypage") */
+    console.log("Username: " + username);
+    console.log("Password: " + password);  
+  }
 //================================================  
   return (
     <>

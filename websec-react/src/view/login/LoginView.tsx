@@ -1,19 +1,19 @@
 import { useState } from "react";
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, /* useNavigate */} from 'react-router-dom'
+
 export const LoginView = () => {
 
-const navigate = useNavigate()
+/* const navigate = useNavigate() */
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-  e.preventDefault();
-  navigate("/mypage")
-  console.log("Username: " + username);
-  console.log("Password: " + username);  
-}
 
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log("Username: " + username);
+    console.log("Password: " + username);  
+  }
 
 //================================================  
   return (

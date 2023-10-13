@@ -38,6 +38,7 @@ export const RegistrationView = () => {
         },
         body: JSON.stringify(user),
       });
+      console.log(resp)
       setErrorMessage("")
       reset()
       console.clear();

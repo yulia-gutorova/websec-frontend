@@ -16,6 +16,8 @@ export const RegistrationView = () => {
 
     try {
 
+   
+
       const resp = await axios.post(import.meta.env.VITE_REG_URL, user);
       console.log("Responce: " + resp.data);
         

@@ -22,9 +22,7 @@ jobs:
         run: npm install
 
       - name: Run build
-        run: |
-         echo 'VITE_REG_URL = ${{ secrets.VITE_REG_URL}}' >> .env.production
-         npm run build
+        run: npm run build
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0

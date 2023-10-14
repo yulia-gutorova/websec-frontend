@@ -12,7 +12,10 @@ interface IFormInput {
 }
 
 export const RegistrationView = () => {
+
   const [errorMessage, setErrorMessage] = useState("")
+  const [isCheckbox, setIsCheckbox] = useState(false)
+
   const {
     register,
     handleSubmit,
@@ -22,50 +25,50 @@ export const RegistrationView = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
 
+    if (data.checkbox) {
 
-   if (data.checkbox) {
-   
-    const user = {
-      username: data.username,
-      password: data.password,
-    };
-    
-    try {
-      const resp = await fetch(import.meta.env.VITE_BASE_URL + "/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-      console.log(resp)
-      setErrorMessage("")
-      reset()
-      console.clear();
-      if (resp.status === 409) {
-        // Handle the 409 status code
-        const data = await resp.json();
-        setErrorMessage(data.message)
-      }
-      if (resp.status === 201) {
-        // Handle the 201 status code
-        const data = await resp.json();
-        setErrorMessage(data.message)
-      }
+      const user = {
+        username: data.username,
+        password: data.password,
+      };
 
-      if(resp.status === 404) {
-        // Handle other errors when server is offline
+      try {
+        const resp = await fetch(import.meta.env.VITE_BASE_URL + "/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        });
+        console.log(resp)
+        setErrorMessage("")
+        reset()
+        console.clear();
+        if (resp.status === 409) {
+          // Handle the 409 status code
+          const data = await resp.json();
+          setErrorMessage(data.message)
+        }
+        if (resp.status === 201) {
+          // Handle the 201 status code
+          const data = await resp.json();
+          setErrorMessage(data.message)
+        }
+
+        if (resp.status === 404) {
+          // Handle other errors when server is offline
+          setErrorMessage("Unexpected error has occured")
+        }
+
+
+      } catch (error) {
         setErrorMessage("Unexpected error has occured")
       }
-
-
-    } catch (error) {
-      setErrorMessage("Unexpected error has occured")    }
-  }
+    }
   }
   //================================================
   return (
-    <body>
+    <div className={classes.container}>
       <div className={classes.registerArea}>
         <div className={classes.background}>
           <div className={classes.shapeOne}></div>
@@ -90,7 +93,10 @@ export const RegistrationView = () => {
               className={classes.registerInput}
               {...register("username", { required: true })}
             />
-            {errors.username && <div>Username is required</div>}
+            <div className={classes.registerErrorWrapper}>
+
+              {errors.username &&  <span className={classes.registerErrorText}>Username is required</span>}  
+            </div>
           </div>
 
           <div>
@@ -103,31 +109,41 @@ export const RegistrationView = () => {
               className={classes.registerInput}
               {...register("password", { required: true })}
             />
-            {errors.password && <div>Password is required</div>}
+
+            <div className={classes.registerErrorWrapper}>
+              {errors.password &&  <span className={classes.registerErrorText}>Password is required</span>}  
+            </div>
+
           </div>
 
-          <div>
-            <label htmlFor="checkbox" className={classes.registerLabel}>
-              I agree to the Privacy Policy
-            </label>
+          {/* ------------- Checkbox -----------------*/}
+          <div className={classes.registerCheckboxWrapper}>
             <input
               id="checkbox"
               type="checkbox"
-              className={classes.registerInput}
+              onClick={() => setIsCheckbox(!isCheckbox)}
+              className={classes.registerInputCheckbox}
               {...register("checkbox", { required: true })}
             />
-            {errors.checkbox && <div>You must to agree to terms and conditions</div>}
+            <label htmlFor="checkbox" className={classes.registerCheckboxLabel}>
+              I agree to the Privacy Policy
+            </label>
+
+            <div className={classes.registerErrorWrapper}>
+                {errors.checkbox &&  <span className={classes.registerErrorText}>You must to agree to terms and conditions </span>}        
+            </div>
           </div>
 
           <div>
             <button type="submit" className={classes.registerButton}>
               Submit
             </button>
-            {errorMessage ? (
-              <div>{errorMessage}</div>
-            ) : isSubmitSuccessful ? (<div>
-              Registration successful!
-            </div>): null}
+
+            <div className={classes.registerErrorWrapper}>
+            
+              {errorMessage || !isCheckbox? (<span className={classes.registerErrorText}>{errorMessage}</span>) : isSubmitSuccessful ? (<span className={classes.registerSuccessText}>Register successfull</span>) : null}
+            </div>
+
           </div>
 
           <hr className={classes.hr} />
@@ -136,11 +152,11 @@ export const RegistrationView = () => {
             <span>Already have an account?</span>
             <Link to="/" className={classes.link}>
               {" "}
-              <span className={classes.backLink}> {"< "}Go back </span>{" "}
+              <span className={classes.backLink}> &ensp; &ensp;{"< "}Go back </span>{" "}
             </Link>
           </div>
         </form>
       </div>
-    </body>
+    </div>
   );
 };

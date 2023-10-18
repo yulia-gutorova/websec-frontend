@@ -141,7 +141,7 @@ export const RegistrationView = () => {
 
             <div className={classes.registerErrorWrapper}>
             
-              {errorMessage || !isCheckbox? (<span className={classes.registerErrorText}>{errorMessage}</span>) : isSubmitSuccessful ? (<span className={classes.registerSuccessText}>Register successfull</span>) : null}
+              {errorMessage || !isCheckbox? (<span  className={ isSubmitSuccessful? classes.registerSuccessText : classes.registerErrorText }>{errorMessage}</span>) : isSubmitSuccessful ? (<span className={classes.registerSuccessText}>Register successfull</span>) : null}
             </div>
 
           </div>

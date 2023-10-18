@@ -1,80 +1,95 @@
-import { useState } from "react";
-import { Link, /* useNavigate */ } from 'react-router-dom'
 
+import { Link } from "react-router-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
 import classes from "./styles/LoginView.module.css";
+
+interface IFormLoginInput {
+  username: string;
+  password: string;
+}
 
 export const LoginView = () => {
 
-  /* const navigate = useNavigate() */
+  const {
+    register,
+    handleSubmit,
+    formState: { errors},
+  } = useForm<IFormLoginInput>();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const onSubmit: SubmitHandler<IFormLoginInput> = async (data) => {
+    const user = {
+      username: data.username,
+      password: data.password,
+    };
 
+    try {
+      const resp = await fetch(import.meta.env.VITE_BASE_URL + "/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      const data = await resp.json();
+      const token = data.token;
+      console.log(token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    console.log("Username: " + username);
-    console.log("Password: " + username);
-  }
-
-  //================================================  
+  //================================================
   return (
-
     <body>
-
       <div className={classes.loginArea}>
-
-      <div className={classes.background}>
+        <div className={classes.background}>
           <div className={classes.shapeOne}></div>
           <div className={classes.shapeTwo}></div>
         </div>
 
-        <form className={classes.loginForm}>
-
-        <div>
-          <h1 className={classes.loginHeader}>Login</h1>
-        </div>
-
+        <form onSubmit={handleSubmit(onSubmit)} className={classes.loginForm}>
           <div>
-            <label htmlFor="username" className={classes.loginLabel}>Username:</label>
+            <h1 className={classes.loginHeader}>Login</h1>
+          </div>
+          <div>
+            <label htmlFor="username" className={classes.loginLabel}>
+              Username:
+            </label>
             <input
               id="username"
               type="text"
               className={classes.loginInput}
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
+              {...register("username", { required: true })}
             />
-          </div>
-
-          <div>
-            <label htmlFor="password" className={classes.loginLabel}>Password:</label>
+            {errors.username && <span>Username is required</span>}
+            <label htmlFor="password" className={classes.loginLabel}>
+              Password:
+            </label>
             <input
               id="password"
               type="password"
               className={classes.loginInput}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+              {...register("password", { required: true })}
+              />
+            {errors.password && <span>Password is required</span>}
+            <button
+              type="submit"
+              className={classes.loginButton}
+            >
+              Submit
+            </button>
+            
           </div>
-
-          <div>
-            <button type="button" className={classes.loginButton} onClick={handleSubmit}>Submit</button>
-          </div>
-
-          <hr className={classes.hr}/>
-
+          <hr className={classes.hr} />
           <div>
             <span>Don't have an account?</span>
-            <Link to="/registration" className={classes.link}> <span className={classes.backLink}>  Register</span> </Link>
+            <Link to="/registration" className={classes.link}>
+              {" "}
+              <span className={classes.backLink}> Register</span>{" "}
+            </Link>
           </div>
-
         </form>
-
       </div>
-
     </body>
-
   );
 };

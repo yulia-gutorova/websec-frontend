@@ -134,9 +134,6 @@
     background-color: rgba(255, 255, 255, 0.47);
 }   
 
-.registerButton:hover {
-    background-color: gray;
-}
 
 .hr {
     margin: 20px 0 20px 0;

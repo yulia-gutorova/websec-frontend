@@ -96,7 +96,7 @@ export const RegistrationView = () => {
             />
             <div className={classes.registerErrorWrapper}>
 
-              {errors.username &&  <span className={classes.registerErrorText}>Username is required</span>}  
+              {errors.username && <span className={classes.registerErrorText}>Username is required</span>}
             </div>
           </div>
 
@@ -112,7 +112,7 @@ export const RegistrationView = () => {
             />
 
             <div className={classes.registerErrorWrapper}>
-              {errors.password &&  <span className={classes.registerErrorText}>Password is required</span>}  
+              {errors.password && <span className={classes.registerErrorText}>Password is required</span>}
             </div>
 
           </div>
@@ -131,20 +131,16 @@ export const RegistrationView = () => {
             </label>
 
             <div className={classes.registerErrorWrapper}>
-                {errors.checkbox &&  <span className={classes.registerErrorText}>You must to agree to terms and conditions </span>}        
+              {errors.checkbox && <span className={classes.registerErrorText}>You must to agree to terms and conditions </span>}
             </div>
           </div>
 
           <div>
-            <button type="submit" className={classes.registerButton}>
-              Submit
-            </button>
+            <button type="submit" className={classes.registerButton}>Submit</button>
 
             <div className={classes.registerErrorWrapper}>
-            
-              {errorMessage || !isCheckbox? (<span  className={ isSubmitSuccessful? classes.registerSuccessText : classes.registerErrorText }>{errorMessage}</span>) : isSubmitSuccessful ? (<span className={classes.registerSuccessText}>Register successfull</span>) : null}
+              {errorMessage || !isCheckbox ? (<span className={isSubmitSuccessful ? classes.registerSuccessText : classes.registerErrorText}>{errorMessage}</span>) : isSubmitSuccessful ? (<span className={classes.registerSuccessText}>Register successfull</span>) : null}
             </div>
-
           </div>
 
           <hr className={classes.hr} />
@@ -156,6 +152,7 @@ export const RegistrationView = () => {
               <span className={classes.backLink}> &ensp; &ensp;{"< "}Go back </span>{" "}
             </Link>
           </div>
+
         </form>
       </div>
     </div>

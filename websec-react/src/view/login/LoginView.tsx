@@ -13,7 +13,7 @@ export const LoginView = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors},
+    formState: { errors },
   } = useForm<IFormLoginInput>();
 
   const onSubmit: SubmitHandler<IFormLoginInput> = async (data) => {
@@ -41,7 +41,7 @@ export const LoginView = () => {
 
   //================================================
   return (
-    <body>
+    <div className={classes.container}>
       <div className={classes.loginArea}>
         <div className={classes.background}>
           <div className={classes.shapeOne}></div>
@@ -49,9 +49,11 @@ export const LoginView = () => {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className={classes.loginForm}>
+
           <div>
             <h1 className={classes.loginHeader}>Login</h1>
           </div>
+
           <div>
             <label htmlFor="username" className={classes.loginLabel}>
               Username:
@@ -62,7 +64,9 @@ export const LoginView = () => {
               className={classes.loginInput}
               {...register("username", { required: true })}
             />
-            {errors.username && <span>Username is required</span>}
+            <div className={classes.loginErrorWrapper}>
+              {errors.username && <span className={classes.registerErrorText}>Username is required</span>}
+            </div>
             <label htmlFor="password" className={classes.loginLabel}>
               Password:
             </label>
@@ -71,26 +75,26 @@ export const LoginView = () => {
               type="password"
               className={classes.loginInput}
               {...register("password", { required: true })}
-              />
-            {errors.password && <span>Password is required</span>}
-            <button
-              type="submit"
-              className={classes.loginButton}
-            >
-              Submit
-            </button>
-            
+            />
+            <div className={classes.loginErrorWrapper}>
+              {errors.password && <span className={classes.registerErrorText}>Password is required</span>}
+            </div>
+            <button type="submit" className={classes.loginButton}>Submit</button>
+
           </div>
+
           <hr className={classes.hr} />
+
           <div>
             <span>Don't have an account?</span>
             <Link to="/registration" className={classes.link}>
               {" "}
-              <span className={classes.backLink}> Register</span>{" "}
+              <span className={classes.backLink}> &ensp; &ensp;{"< "}Register</span>{" "}
             </Link>
           </div>
+
         </form>
       </div>
-    </body>
+    </div>
   );
 };

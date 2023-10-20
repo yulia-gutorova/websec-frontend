@@ -39,6 +39,7 @@ export const RegistrationView = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(user),
+          credentials: 'include',
         });
         console.log(resp)
         setErrorMessage("")

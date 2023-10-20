@@ -29,6 +29,7 @@ export const LoginView = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
+        credentials: 'include',
       });
       const data = await resp.json();
       const token = data.token;

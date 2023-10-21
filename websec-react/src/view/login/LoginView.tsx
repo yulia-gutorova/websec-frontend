@@ -48,10 +48,10 @@ export const LoginView = () => {
           <div className={classes.shapeTwo}></div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className={classes.loginForm}>
+        <form onSubmit={handleSubmit(onSubmit)} id="loginForm" className={classes.loginForm}>
 
           <div>
-            <h1 className={classes.loginHeader}>Login</h1>
+            <h1 id="loginFormHeader" className={classes.loginHeader}>Login</h1>
           </div>
 
           <div>
@@ -64,9 +64,11 @@ export const LoginView = () => {
               className={classes.loginInput}
               {...register("username", { required: true })}
             />
-            <div className={classes.loginErrorWrapper}>
+
+            <div id="usernameError" className={classes.loginErrorWrapper}>
               {errors.username && <span className={classes.registerErrorText}>Username is required</span>}
             </div>
+
             <label htmlFor="password" className={classes.loginLabel}>
               Password:
             </label>
@@ -76,9 +78,11 @@ export const LoginView = () => {
               className={classes.loginInput}
               {...register("password", { required: true })}
             />
-            <div className={classes.loginErrorWrapper}>
+
+            <div id="passworError" className={classes.loginErrorWrapper}>
               {errors.password && <span className={classes.registerErrorText}>Password is required</span>}
             </div>
+
             <button type="submit" className={classes.loginButton}>Submit</button>
 
           </div>

@@ -52,4 +52,4 @@ class LoginPageLocators {
 
 }
 
-export const homePageLocators = new LoginPageLocators();
+export const loginPageLocators = new LoginPageLocators();

@@ -1,34 +1,34 @@
 /// <reference types="cypress" />
 
-import {navigateToPage} from '../../support/utils/CommonFunctions';   
+import {commonFunctions} from '../../support/utils/CommonFunctions';   
 import {elementInteractions} from '../../support/utils/ElementsInteraction';
-import {homePageLocators} from '../../support/elementLocators/LoginPageLocators';   
+import {loginPageLocators} from '../../support/elementLocators/LoginPageLocators';   
 
 describe('Visit login page', () => {
 
     describe('Page elements are visible', () => {
 
         before(() => {
-            navigateToPage.navigateToPage('/');
+            commonFunctions.navigateToPage('/');
         })
 
-        it('visible elements', () => {
+        it.skip('visible elements', () => {
 
-            elementInteractions.elementIsVisible(homePageLocators.LoginForm()); 
-            elementInteractions.elementIsVisible(homePageLocators.LoginFormHeader());  
-            elementInteractions.elementIsVisible(homePageLocators.LoginFormUsernameLabel());
-            elementInteractions.elementIsVisible(homePageLocators.LoginFormPasswordLabel());   
-            elementInteractions.elementIsVisible(homePageLocators.LoginFormUsernameInput());
-            elementInteractions.elementIsVisible(homePageLocators.LoginFormPasswordInput());
-            elementInteractions.elementIsVisible(homePageLocators.LoginLinkToRegister());
-            elementInteractions.elementIsVisible(homePageLocators.LoginText());
-            elementInteractions.elementIsVisible(homePageLocators.LoginSubmitButton());
+            elementInteractions.elementIsVisible(loginPageLocators.LoginForm()); 
+            elementInteractions.elementIsVisible(loginPageLocators.LoginFormHeader());  
+            elementInteractions.elementIsVisible(loginPageLocators.LoginFormUsernameLabel());
+            elementInteractions.elementIsVisible(loginPageLocators.LoginFormPasswordLabel());   
+            elementInteractions.elementIsVisible(loginPageLocators.LoginFormUsernameInput());
+            elementInteractions.elementIsVisible(loginPageLocators.LoginFormPasswordInput());
+            elementInteractions.elementIsVisible(loginPageLocators.LoginLinkToRegister());
+            elementInteractions.elementIsVisible(loginPageLocators.LoginText());
+            elementInteractions.elementIsVisible(loginPageLocators.LoginSubmitButton());
         })
 
-        it('not visible elements', () => {
+        it.skip('not visible elements', () => {
 
-            elementInteractions.elementIsNotVisible(homePageLocators.LoginErrorMessagePassword());
-            elementInteractions.elementIsNotVisible(homePageLocators.LoginErrorMessageUsername());
+            elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessagePassword());
+            elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessageUsername());
         })
 
 

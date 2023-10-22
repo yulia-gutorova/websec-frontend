@@ -86,6 +86,7 @@ export const RegistrationView = () => {
            id="registerFormHeader" className={classes.registerHeader}>Register</h1>
           </div>
 
+          {/* ------------- Username -----------------*/}
           <div>
             <label htmlFor="username" className={classes.registerLabel}>
               Username:
@@ -101,6 +102,7 @@ export const RegistrationView = () => {
             </div>
           </div>
 
+          {/* ------------- Password -----------------*/}     
           <div>
             <label htmlFor="password" className={classes.registerLabel}>
               Password:
@@ -112,8 +114,8 @@ export const RegistrationView = () => {
               {...register("password", { required: true })}
             />
 
-            <div className={classes.registerErrorWrapper}>
-              {errors.password && <span id="passswordError"  className={classes.registerErrorText}>Password is required</span>}
+            <div  className={classes.registerErrorWrapper}>
+              {errors.password && <span className={classes.registerErrorText} id="passwordError">Password is required</span>}
             </div>
 
           </div>

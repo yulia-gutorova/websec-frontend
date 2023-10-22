@@ -4,21 +4,31 @@ export class CommonFunctions {
         cy.visit(pageName);
     }
 
-    fillLoginForm(username: string, password: string) {
-        cy.get("input[id='username']").type(username);
-        cy.get("input[id='password']").type(password);
+    fillLoginForm(inputUsername : Cypress.Chainable<JQuery<HTMLElement>>, 
+                  username: string, 
+                  inputPassword : Cypress.Chainable<JQuery<HTMLElement>>, 
+                  password: string) {
+        inputUsername.type(username);
+        inputPassword.type(password);
     }
 
-    fillRegisterForm(username: string, password: string, checkbox: boolean) {
-        cy.get("input[id='username']").type(username);
-        cy.get("input[id='password']").type(password);
+    fillRegisterForm(inputUsername : Cypress.Chainable<JQuery<HTMLElement>>, 
+                     username: string, 
+                     inputPassword : Cypress.Chainable<JQuery<HTMLElement>>, 
+                     password: string,
+                     inputCheckbox : Cypress.Chainable<JQuery<HTMLElement>>,
+                     checkbox : boolean) {
+
+        inputUsername.type(username);
+        inputPassword.type(password);
+
         if (checkbox) {
-            cy.get("input[id='checkbox']").check();
+            inputCheckbox.check();
         }
     }
 
-    submitForm() {
-        cy.get("button[type='submit']").click();
+    submitForm( button : Cypress.Chainable<JQuery<HTMLElement>>) {
+        button.click();
     }
 
     urlIsRight(url: string) {

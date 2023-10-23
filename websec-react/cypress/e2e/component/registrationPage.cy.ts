@@ -6,23 +6,26 @@ import {registrationPageLocators} from '../../support/elementLocators/Registrati
 
 describe('Visit registration page', () => {
 
+    //================================================================================
     describe('Check url', () => {
         before(() => {
-            cy.visit('/registration');
+            const url = Cypress.env('TEST_BASE_URL')+'/registration';
+            commonFunctions.navigateToPage(url);
         })
 
         it('url is right', () => {
-            commonFunctions.urlIsRight('/registration');
+            commonFunctions.urlContains('/registration');
         })
 
     })
 
+    //================================================================================
     describe('Page elements are visible', () => {
 
         before(() => {
-            cy.visit('/registration');
+            const url = Cypress.env('TEST_BASE_URL')+'/registration';
+            commonFunctions.navigateToPage(url);
         })
-
 
         it('visible elements', () => {
 
@@ -53,24 +56,25 @@ describe('Visit registration page', () => {
 
         })
 
-
+        //================================================================================
         describe('Check error messages', () => {
 
 
             beforeEach(() => {
-                cy.visit('/registration');
+                const url = Cypress.env('TEST_BASE_URL')+'/registration';
+                commonFunctions.navigateToPage(url);
             })
 
             it('error messages are not visible when submitting filled form', () => {
 
-                commonFunctions.fillRegisterForm(registrationPageLocators.RegisterFormUsernameInput(), 
+                elementInteractions.fillRegisterForm(registrationPageLocators.RegisterFormUsernameInput(), 
                                                 'test', 
                                                 registrationPageLocators.RegisterFormPasswordInput(), 
                                                 'test', 
                                                  registrationPageLocators.RegisterFormCheckboxInput(),
                                                  true);
     
-                commonFunctions.submitForm(registrationPageLocators.RegisterSubmitButton()); 
+                                                 elementInteractions.submitForm(registrationPageLocators.RegisterSubmitButton()); 
                
                 elementInteractions.elementIsNotVisible(registrationPageLocators.RegisterErrorMessageUsername());
                 elementInteractions.elementIsNotVisible(registrationPageLocators.RegisterErrorMessagePassword()); 
@@ -79,15 +83,12 @@ describe('Visit registration page', () => {
     
             it('error messages are visivle when submitting empty form', () => {
     
-               commonFunctions.submitForm(registrationPageLocators.RegisterSubmitButton()); 
+                elementInteractions.submitForm(registrationPageLocators.RegisterSubmitButton()); 
                
                elementInteractions.elementIsVisible(registrationPageLocators.RegisterErrorMessageUsername());
                elementInteractions.elementIsVisible(registrationPageLocators.RegisterErrorMessagePassword()); 
-                elementInteractions.elementIsVisible(registrationPageLocators.RegisterErrorMessageCheckbox());
+               elementInteractions.elementIsVisible(registrationPageLocators.RegisterErrorMessageCheckbox());
             })
-
-
         })
-
     })
 })

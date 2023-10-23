@@ -40,13 +40,37 @@ class ElementInteractions{
         return element.invoke('css', cssProperty);
     }  
 
-    submitForm (element : Cypress.Chainable<JQuery<HTMLElement>>) {
-        return element.submit();
-    }   
-
     clearTextFromElement (element : Cypress.Chainable<JQuery<HTMLElement>>) {
         return element.clear();
-    }   
+    }  
+    
+    fillLoginForm(inputUsername : Cypress.Chainable<JQuery<HTMLElement>>, 
+        username: string, 
+        inputPassword : Cypress.Chainable<JQuery<HTMLElement>>, 
+        password: string) {
+          
+        inputUsername.type(username);
+        inputPassword.type(password);
+        }
+
+    fillRegisterForm(inputUsername : Cypress.Chainable<JQuery<HTMLElement>>, 
+            username: string, 
+            inputPassword : Cypress.Chainable<JQuery<HTMLElement>>, 
+            password: string,
+            inputCheckbox : Cypress.Chainable<JQuery<HTMLElement>>,
+            checkbox : boolean) {
+
+    inputUsername.type(username);
+    inputPassword.type(password);
+
+    if (checkbox) {
+    inputCheckbox.check();
+    }
+    }
+
+    submitForm( button : Cypress.Chainable<JQuery<HTMLElement>>) {
+    button.click();
+    }
 
 }
 

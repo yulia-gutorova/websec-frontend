@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginView />} />
         <Route path="/registration" element={<RegistrationView />} />
-          <Route path="/mypage" element={ <MyPage />}/> 
+        <Route path="/mypage" element={ <MyPage />}/> 
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
     </BrowserRouter>

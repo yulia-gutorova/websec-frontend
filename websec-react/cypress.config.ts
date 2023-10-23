@@ -1,13 +1,12 @@
 import { defineConfig } from "cypress";
 
+const envbaseUrl = process.env.TEST_BASE_URL;
+
 export default defineConfig({
   e2e: {
-    
-    baseUrl: 'http://localhost:5173',
     video: false,
     screenshotOnRunFailure : false,
     setupNodeEvents(on, config) {
-      // implement node event listeners here
     },
   },
 

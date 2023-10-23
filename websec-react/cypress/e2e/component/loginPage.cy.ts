@@ -9,10 +9,11 @@ describe('Visit login page', () => {
     describe('Page elements are visible', () => {
 
         before(() => {
-            commonFunctions.navigateToPage('/');
+            //cy.visit(Cypress.env('TEST_BASE_URL'));
+            commonFunctions.navigateToPage(Cypress.env('TEST_BASE_URL'));
         })
 
-        it.skip('visible elements', () => {
+        it('visible elements', () => {
 
             elementInteractions.elementIsVisible(loginPageLocators.LoginForm()); 
             elementInteractions.elementIsVisible(loginPageLocators.LoginFormHeader());  
@@ -25,14 +26,11 @@ describe('Visit login page', () => {
             elementInteractions.elementIsVisible(loginPageLocators.LoginSubmitButton());
         })
 
-        it.skip('not visible elements', () => {
+        it('not visible elements', () => {
 
             elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessagePassword());
             elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessageUsername());
         })
-
-
-
 
     })
 })

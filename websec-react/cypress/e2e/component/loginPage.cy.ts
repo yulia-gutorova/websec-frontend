@@ -10,7 +10,8 @@ describe('Visit login page', () => {
 
         before(() => {
             //cy.visit(Cypress.env('TEST_BASE_URL'));
-            commonFunctions.navigateToPage(Cypress.env('TEST_BASE_URL'));
+            //commonFunctions.navigateToPage(Cypress.env('TEST_BASE_URL'));
+            commonFunctions.navigateToPage("/");
         })
 
         it('visible elements', () => {
@@ -24,12 +25,16 @@ describe('Visit login page', () => {
             elementInteractions.elementIsVisible(loginPageLocators.LoginLinkToRegister());
             elementInteractions.elementIsVisible(loginPageLocators.LoginText());
             elementInteractions.elementIsVisible(loginPageLocators.LoginSubmitButton());
+
+            commonFunctions.waitForTime(2000);
         })
 
         it('not visible elements', () => {
 
             elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessagePassword());
             elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessageUsername());
+
+            commonFunctions.waitForTime(2000);
         })
 
     })

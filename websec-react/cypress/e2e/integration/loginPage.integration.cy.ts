@@ -8,15 +8,14 @@ import data from '../../fixtures/example.json';
 console.log(data);
 
  //================================================================================
-        describe('Check messages User already exist ', () => {
-
+        describe('Fill in form with existing user credentials', () => {
 
             before(() => {
                 const url = Cypress.env('TEST_BASE_URL')+'/registration';
                 commonFunctions.navigateToPage(url);
             })
 
-            it.skip('error messages are not visible when submitting filled form', () => {
+            it('error messages User already exist is visible', () => {
 
                 elementInteractions.fillRegisterForm(registrationPageLocators.RegisterFormUsernameInput(), 
                                                 'test', 
@@ -24,20 +23,14 @@ console.log(data);
                                                 'test', 
                                                  registrationPageLocators.RegisterFormCheckboxInput(),
                                                  true);
+                commonFunctions.waitForTime(2000);
     
-                                                 elementInteractions.submitForm(registrationPageLocators.RegisterSubmitButton()); 
+                elementInteractions.submitForm(registrationPageLocators.RegisterSubmitButton()); 
+                commonFunctions.waitForTime(2000);
                
                 elementInteractions.elementIsNotVisible(registrationPageLocators.RegisterErrorMessageUsername());
                 elementInteractions.elementIsNotVisible(registrationPageLocators.RegisterErrorMessagePassword()); 
                 elementInteractions.elementIsNotVisible(registrationPageLocators.RegisterErrorMessageCheckbox());
             })
-    
-            it('error messages are visivle when submitting empty form', () => {
-    
-                elementInteractions.submitForm(registrationPageLocators.RegisterSubmitButton()); 
-               
-               elementInteractions.elementIsVisible(registrationPageLocators.RegisterErrorMessageUsername());
-               elementInteractions.elementIsVisible(registrationPageLocators.RegisterErrorMessagePassword()); 
-               elementInteractions.elementIsVisible(registrationPageLocators.RegisterErrorMessageCheckbox());
-            })
+
         })

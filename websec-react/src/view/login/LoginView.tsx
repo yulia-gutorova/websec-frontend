@@ -42,6 +42,7 @@ export const LoginView = () => {
   //================================================
   return (
     <div className={classes.container}>
+
       <div className={classes.loginArea}>
         <div className={classes.background}>
           <div className={classes.shapeOne}></div>
@@ -101,6 +102,7 @@ export const LoginView = () => {
 
         </form>
       </div>
+      
     </div>
   );
 };

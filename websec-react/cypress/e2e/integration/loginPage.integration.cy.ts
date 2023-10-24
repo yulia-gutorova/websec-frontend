@@ -11,8 +11,9 @@ console.log(data);
         describe('Fill in form with existing user credentials', () => {
 
             before(() => {
-                const url = Cypress.env('TEST_BASE_URL')+'/registration';
-                commonFunctions.navigateToPage(url);
+                //const url = Cypress.env('TEST_BASE_URL')+'/registration';
+                //commonFunctions.navigateToPage(url);
+                commonFunctions.navigateToPage("/registration");
             })
 
             it('error messages User already exist is visible', () => {

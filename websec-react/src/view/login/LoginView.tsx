@@ -95,8 +95,7 @@ export const LoginView = () => {
           <div>
             <span>Don't have an account?</span>
             <Link to="/registration" className={classes.link}>
-              {" "}
-              <span className={classes.backLink}> &ensp; &ensp;{"< "}Register</span>{" "}
+              <span className={classes.backLink}> &ensp; &ensp;{"< "}Register</span>
             </Link>
           </div>
 

@@ -38,7 +38,7 @@ class RegistrationPageLocators {
         return cy.get("button[type='submit']");
     }   
 
-    LoginLinkToLogin() {
+    RegisterLinkToLogin() {
        return cy.get("span").contains('< Go back');
     }
 
@@ -65,6 +65,16 @@ class RegistrationPageLocators {
     RegisterErrorUnexpectedError() {
         return cy.get("#unexpectedError");
     }
+
+    RegisterSuccessMessage() {
+        return cy.get("span").contains("Registration successful!");
+    }
+
+    RegisterMessageUserAlredyExists() {
+        return cy.get("span").contains("User already exist");
+    }
+    
+
 
 }
 

@@ -11,7 +11,7 @@ describe('Visit login page', () => {
         before(() => {
             //cy.visit(Cypress.env('TEST_BASE_URL'));
             //commonFunctions.navigateToPage(Cypress.env('TEST_BASE_URL'));
-            commonFunctions.navigateToPage("/");
+            commonFunctions.navigateToPage("/login");
         })
 
         it('visible elements', () => {

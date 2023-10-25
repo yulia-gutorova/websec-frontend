@@ -7,8 +7,7 @@ export class CommonFunctions {
     urlContains(url: string) {
         cy.url().should('include', url);
     }
-
-    
+   
 
     waitForTime(time: number) {
         cy.wait(time);

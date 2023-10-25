@@ -1,7 +1,5 @@
 /// <reference types="cypress" />
 
-import { type } from "cypress/types/jquery";
-
 class ElementInteractions{
 
      elementIsVisible (element : Cypress.Chainable<JQuery<HTMLElement>>) {

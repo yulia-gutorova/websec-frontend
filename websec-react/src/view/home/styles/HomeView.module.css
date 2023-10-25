@@ -48,4 +48,10 @@
     font-size: 24px;
     font-weight: bold;
     filter:opacity(0.8);
+    filter: blur(20px);
   }
+
+  .goToLoginPageButton:hover {
+    filter:opacity(1px);
+    filter: blur(2px);
+  } 

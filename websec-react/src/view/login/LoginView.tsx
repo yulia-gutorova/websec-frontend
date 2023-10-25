@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import classes from "./styles/LoginView.module.css";
 
@@ -9,7 +9,7 @@ interface IFormLoginInput {
 }
 
 export const LoginView = () => {
-
+const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -17,6 +17,7 @@ export const LoginView = () => {
   } = useForm<IFormLoginInput>();
 
   const onSubmit: SubmitHandler<IFormLoginInput> = async (data) => {
+  
     const user = {
       username: data.username,
       password: data.password,
@@ -33,7 +34,8 @@ export const LoginView = () => {
       });
       const data = await resp.json();
       const token = data.token;
-      console.log(token);
+      navigate(`/mypage/${user.username}`)
+  
     } catch (error) {
       console.log(error);
     }

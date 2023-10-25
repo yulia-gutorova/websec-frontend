@@ -17,7 +17,7 @@ export const MyPage = () => {
   
       if (resp.status === 401) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const data = await resp.json();
+       
         navigate('/login')
       }
     } catch(error){
@@ -28,6 +28,7 @@ export const MyPage = () => {
   
   useEffect(() =>{
     checkIfAuthed()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   
 

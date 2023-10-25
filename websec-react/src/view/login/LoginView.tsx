@@ -24,6 +24,7 @@ const navigate = useNavigate()
     };
 
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const resp = await fetch(import.meta.env.VITE_BASE_URL + "/login", {
         method: "POST",
         headers: {
@@ -32,8 +33,8 @@ const navigate = useNavigate()
         body: JSON.stringify(user),
         credentials: 'include',
       });
-      const data = await resp.json();
-      const token = data.token;
+     
+      
       navigate(`/mypage/${user.username}`)
   
     } catch (error) {

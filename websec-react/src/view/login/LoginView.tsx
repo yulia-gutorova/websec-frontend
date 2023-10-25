@@ -24,8 +24,8 @@ const navigate = useNavigate()
     };
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const resp = await fetch(import.meta.env.VITE_BASE_URL + "/login", {
+      
+      await fetch(import.meta.env.VITE_BASE_URL + "/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -2,6 +2,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import classes from "./styles/LoginView.module.css";
+import { useState } from "react";
 
 interface IFormLoginInput {
   username: string;
@@ -9,7 +10,9 @@ interface IFormLoginInput {
 }
 
 export const LoginView = () => {
-const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
+
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -24,7 +27,7 @@ const navigate = useNavigate()
     };
 
     try {
-      
+      setIsLoading(true); 
       await fetch(import.meta.env.VITE_BASE_URL + "/login", {
         method: "POST",
         headers: {
@@ -39,6 +42,8 @@ const navigate = useNavigate()
   
     } catch (error) {
       console.log(error);
+    }finally {
+      setIsLoading(false);
     }
   };
 
@@ -89,7 +94,7 @@ const navigate = useNavigate()
               {errors.password && <span id="passworError" className={classes.registerErrorText}>Password is required</span>}
             </div>
 
-            <button type="submit" className={classes.loginButton}>Submit</button>
+            <button disabled={isLoading} type="submit" className={`${classes.loginButton} ${isLoading ? classes.noHoverEffect: ""} `}>{isLoading ? 'Submitting...' :'Submit'}</button>
 
           </div>
 

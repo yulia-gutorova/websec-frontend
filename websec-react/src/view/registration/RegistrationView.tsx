@@ -15,6 +15,7 @@ export const RegistrationView = () => {
 
   const [errorMessage, setErrorMessage] = useState("")
   const [isCheckbox, setIsCheckbox] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const {
     register,
@@ -27,7 +28,7 @@ export const RegistrationView = () => {
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
 
     if (data.checkbox) {
-
+      setIsLoading(true); 
       const user = {
         username: data.username,
         password: data.password,
@@ -43,7 +44,6 @@ export const RegistrationView = () => {
           credentials: 'include',
         });
 
-        console.log(resp)
         setErrorMessage("")
         reset();
         console.clear();
@@ -68,6 +68,8 @@ export const RegistrationView = () => {
 
       } catch (error) {
         setErrorMessage("Unexpected error has occured")
+      } finally {
+    setIsLoading(false);
       }
     }
 
@@ -145,7 +147,7 @@ export const RegistrationView = () => {
 
           <div>
 
-            <button type="submit" className={classes.registerButton}>Submit</button>
+            <button disabled={isLoading} type="submit" className={`${classes.registerButton} ${isLoading ? classes.noHoverEffect : ""}`}>{isLoading ? 'Submitting...' : 'Submit'}</button>
           </div>
 
           <div className={classes.registerErrorWrapper}>

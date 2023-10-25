@@ -123,6 +123,10 @@
     background-color: rgba(255, 255, 255, 0.47);
 }   
 
+.noHoverEffect{
+    pointer-events: none;
+    }
+
 .hr {
     margin: 20px 0 20px 0;
     border: 1px solid green

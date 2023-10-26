@@ -10,14 +10,14 @@ export const MyPage = () => {
   const navigate = useNavigate()
   const { name } = useParams()
 
-const audio = new Audio(sound)
+  const audio = new Audio(sound)
 
-function play(){
-  audio.play()
-}
-function pause(){
-  audio.pause()
-}
+  function play() {
+    audio.play()
+  }
+  function pause() {
+    audio.pause()
+  }
 
   const checkIfAuthed = async () => {
     try {
@@ -42,23 +42,28 @@ function pause(){
 
   useEffect(() => {
     checkIfAuthed()
- 
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   useEffect(() => {
     play()
- 
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <div className={classes.container}>
-    <div>
+
+      <div className={classes.myPageBanner}>
         <h1 className={classes.myPageHeader}>Hello</h1>
-        <p className={classes.mypageInfo}>This is your page, {name}</p>
+        <p className={classes.myPageInfo}>This is your page, {name}</p>
+      </div>
+
+      <div className={classes.boll}></div>
+      <div className={classes.myPageButtonCintainer}>
+        <button className={classes.myPageButton} onClick={pause}>Pause</button>
+        <button className={classes.myPageButton} >Log out</button>
+      </div>
     </div>
-    <div className={classes.boll}></div>
-  <button onClick={pause}>Pause</button>
-</div>
   )
 }

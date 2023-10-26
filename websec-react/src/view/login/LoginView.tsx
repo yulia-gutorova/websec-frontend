@@ -11,7 +11,7 @@ interface IFormLoginInput {
 
 export const LoginView = () => {
   const [isLoading, setIsLoading] = useState(false)
-
+  const [errorMessage, setErrorMessage] = useState("")
   const navigate = useNavigate()
   const {
     register,
@@ -28,7 +28,7 @@ export const LoginView = () => {
 
     try {
       setIsLoading(true); 
-      await fetch(import.meta.env.VITE_BASE_URL + "/login", {
+      const resp = await fetch(import.meta.env.VITE_BASE_URL + "/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,9 +36,12 @@ export const LoginView = () => {
         body: JSON.stringify(user),
         credentials: 'include',
       });
-     
+     if (resp.status === 200) {
+       navigate(`/mypage/${user.username}`)
+     } else if(resp.status === 401) {
+      setErrorMessage("Username or password do not match")
+     }
       
-      navigate(`/mypage/${user.username}`)
   
     } catch (error) {
       console.log(error);
@@ -93,7 +96,7 @@ export const LoginView = () => {
             <div className={classes.loginErrorWrapper}>
               {errors.password && <span id="passworError" className={classes.registerErrorText}>Password is required</span>}
             </div>
-
+            {errorMessage && <div className={classes.registerErrorText}>{errorMessage}</div>}
             <button disabled={isLoading} type="submit" className={`${classes.loginButton} ${isLoading ? classes.noHoverEffect: ""} `}>{isLoading ? 'Submitting...' :'Submit'}</button>
 
           </div>

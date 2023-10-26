@@ -3,21 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import classes from "./styles/MyPage.module.css";
 
-import sound from "../../assets/panthering.mp3"
 
 
 export const MyPage = () => {
   const navigate = useNavigate()
   const { name } = useParams()
-
-const audio = new Audio(sound)
-
-function play(){
-  audio.play()
-}
-function pause(){
-  audio.pause()
-}
 
   const checkIfAuthed = async () => {
     try {
@@ -45,11 +35,6 @@ function pause(){
  
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  useEffect(() => {
-    play()
- 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
     <div className={classes.container}>
@@ -58,7 +43,7 @@ function pause(){
         <p className={classes.mypageInfo}>This is your page, {name}</p>
     </div>
     <div className={classes.boll}></div>
-  <button onClick={pause}>Pause</button>
+  
 </div>
   )
 }

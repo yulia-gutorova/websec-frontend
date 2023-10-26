@@ -15,6 +15,28 @@
     letter-spacing: 0.5px;
 }
 
+.myPageBanner {
+    padding-top: 20px;
+    height: 200px;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.myPageHeader {
+    font-size: 100px;
+    font-weight: 600;
+    background: -webkit-linear-gradient(#ec4747, #24037e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.myPageInfo {
+    margin-top: 20px;
+    font-size: 36px;
+    font-weight: 400;
+}
+
 .boll {
     width: 200px;
     height: 200px;
@@ -33,6 +55,38 @@ myPageHeader {
     font-weight: 600;
 }
 
+.myPageButtonCintainer {
+    width: 100%;
+    text-align: center  ;
+}
+
+.myPageButton  {
+    /*     margin-top: 30px;
+        width: 100%;
+        background-color: #ffffff;
+        color: #080710;
+        padding: 15px 0;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer; */
+        padding: 15px 0;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 10px;
+        width: 100px;
+        background-color: rgba(255, 255, 255, 0.27);
+        color: #eaf0fb;
+        text-align: center;
+    
+    }
+    
+.myPageButton:hover {
+    background-color: rgba(255, 255, 255, 0.47);
+}   
+    
     @keyframes example {
 /*     0% {background-color:red; left:0px; top:0px;}
     25% {background-color:yellow; left:500px; top:0px;}
@@ -42,8 +96,8 @@ myPageHeader {
 
     0% {background-color:red; left:0vw; top:0vh;}
     25% {background-color:yellow; left:85vw; top:0vh;}
-    50% {background-color:blue; left:85vw; top:60vh;}
-    75% {background-color:green; left:0vw; top:60vh;}
+    50% {background-color:blue; left:85vw; top:calc(60vh - 100px);}
+    75% {background-color:green; left:0vw; top:calc(60vh - 100px);}
     100% {background-color:red; left:0vw; top:0vh;}
 
     }

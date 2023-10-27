@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 import classes from "./styles/RegistrationView.module.css";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 interface IFormInput {
   username: string;
@@ -77,6 +78,10 @@ export const RegistrationView = () => {
   //================================================
   return (
     <div className={classes.container}>
+        <Helmet>
+      <title>Register</title>
+      <meta name='Register' content='Secured'></meta>
+      </Helmet>
       <div className={classes.registerArea}>
         <div className={classes.background}>
           <div className={classes.shapeOne}></div>

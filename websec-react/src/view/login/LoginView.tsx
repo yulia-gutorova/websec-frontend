@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import classes from "./styles/LoginView.module.css";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 interface IFormLoginInput {
   username: string;
@@ -62,6 +63,10 @@ export const LoginView = () => {
   //================================================
   return (
     <div className={classes.container}>
+        <Helmet>
+      <title>Login</title>
+      <meta name='Login' content='Secured'></meta>
+      </Helmet>
 
       <div className={classes.loginArea}>
         <div className={classes.background}>

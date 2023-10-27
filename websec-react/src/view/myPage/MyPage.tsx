@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import classes from "./styles/MyPage.module.css";
+import { Helmet } from 'react-helmet';
 
 
 
@@ -58,6 +59,10 @@ console.log(resp)
 
   return (
     <div className={classes.container}>
+      <Helmet>
+      <title>My page</title>
+      <meta name='My Page' content='Secured'></meta>
+      </Helmet>
 
       <div className={classes.myPageBanner}>
         <h1 className={classes.myPageHeader}>Hello</h1>

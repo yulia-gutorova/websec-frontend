@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import classes from "./styles/HomeView.module.css"
+import { Helmet } from "react-helmet";
 
 
 export const HomeView = () => {
@@ -19,6 +20,10 @@ export const HomeView = () => {
 
   return (
     <div className={classes.body}>
+         <Helmet>
+      <title>Landing page</title>
+      <meta name='Landingpage' content='Secured'></meta>
+      </Helmet>
       <div className={classes.outsideGradient}>
         <div className={classes.insideGradient}>
         <Link to="/login" className={classes.link}>

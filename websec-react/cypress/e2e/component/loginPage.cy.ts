@@ -26,7 +26,7 @@ describe('Visit login page', () => {
             elementInteractions.elementIsVisible(loginPageLocators.LoginText());
             elementInteractions.elementIsVisible(loginPageLocators.LoginSubmitButton());
 
-            commonFunctions.waitForTime(2000);
+            commonFunctions.waitForTime(3000);
         })
 
         it('not visible elements', () => {
@@ -34,7 +34,7 @@ describe('Visit login page', () => {
             elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessagePassword());
             elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessageUsername());
 
-            commonFunctions.waitForTime(2000);
+            commonFunctions.waitForTime(3000);
         })
 
     })

@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-
+import { commonFunctions } from "./CommonFunctions";
 class ElementInteractions{
 
      elementIsVisible (element : Cypress.Chainable<JQuery<HTMLElement>>) {
@@ -48,7 +48,9 @@ class ElementInteractions{
         password: string) {
           
         inputUsername.type(username);
+        commonFunctions.waitForTime(2000);
         inputPassword.type(password);
+        commonFunctions.waitForTime(2000);
         }
 
     fillRegisterForm(inputUsername : Cypress.Chainable<JQuery<HTMLElement>>, 
@@ -59,14 +61,18 @@ class ElementInteractions{
             checkbox : boolean) {
 
     inputUsername.type(username);
+    commonFunctions.waitForTime(2000);
     inputPassword.type(password);
+    commonFunctions.waitForTime(2000);
 
     if (checkbox) {
     inputCheckbox.check();
+    commonFunctions.waitForTime(2000);
     }
     }
 
     submitForm( button : Cypress.Chainable<JQuery<HTMLElement>>) {
+    commonFunctions.waitForTime(2000);
     button.click();
     }
 

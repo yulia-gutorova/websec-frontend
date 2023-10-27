@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 .env
 cypress.env.json
+cypress/fixtures/example.json
 
 
 node_modules

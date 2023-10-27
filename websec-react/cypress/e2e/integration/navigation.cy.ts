@@ -28,6 +28,7 @@ describe('Testing navigation between pages', () => {
 
         elementInteractions.clickOnElement(registrationPageLocators.RegisterLinkToLogin());
         commonFunctions.urlContains("/login");
+        commonFunctions.waitForTime(2000);
 
     })
 

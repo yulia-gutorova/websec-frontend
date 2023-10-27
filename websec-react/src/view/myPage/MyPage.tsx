@@ -8,18 +8,36 @@ import classes from "./styles/MyPage.module.css";
 export const MyPage = () => {
   const navigate = useNavigate()
   const { name } = useParams()
-
+  window.history.pushState(null, window.location.href);
+  window.onpopstate = function () {
+    window.history.pushState( null, window.location.href);
+  };
+ 
+const handleLogout  = async () => {
+  const resp = await fetch(import.meta.env.VITE_BASE_URL + "/logout", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
+  if (resp.status === 200) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    navigate('/login')
+  }
+console.log(resp)
+}
 
   const checkIfAuthed = async () => {
     try {
       const resp = await fetch(import.meta.env.VITE_BASE_URL + "/check-session", {
-        method: "GET",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         credentials: "include",
       });
-
+      
       if (resp.status === 401) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
@@ -36,6 +54,7 @@ export const MyPage = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  
 
   return (
     <div className={classes.container}>
@@ -47,7 +66,7 @@ export const MyPage = () => {
 
       <div className={classes.boll}></div>
       <div className={classes.myPageButtonCintainer}>
-        <button className={classes.myPageButton} >Log out</button>
+        <button onClick={handleLogout} className={classes.myPageButton} >Log out</button>
       </div>
     </div>
   )

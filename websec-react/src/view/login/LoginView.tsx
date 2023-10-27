@@ -10,6 +10,15 @@ interface IFormLoginInput {
 }
 
 export const LoginView = () => {
+
+  window.history.pushState(null, window.location.href);
+  window.onpopstate = function () {
+    window.history.pushState(null, window.location.href);
+  };
+ 
+
+
+
   const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
   const navigate = useNavigate()

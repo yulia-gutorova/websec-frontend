@@ -2,8 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import classes from "./styles/MyPage.module.css";
-import { Helmet } from 'react-helmet';
-
+import { Helmet } from "react-helmet-async";
 
 
 export const MyPage = () => {

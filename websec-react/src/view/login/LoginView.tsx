@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import classes from "./styles/LoginView.module.css";
 import { useState } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 interface IFormLoginInput {
   username: string;

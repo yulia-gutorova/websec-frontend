@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 import classes from "./styles/RegistrationView.module.css";
 import { useState } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 interface IFormInput {
   username: string;

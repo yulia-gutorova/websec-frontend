@@ -3,11 +3,12 @@ import { LoginView } from "./view/login/LoginView";
 import { MyPage } from "./view/myPage/MyPage";
 import { RegistrationView } from "./view/registration/RegistrationView";
 import { HomeView } from "./view/home/HomeView";
-
+import { HelmetProvider } from "react-helmet-async";
 
 function App() {
 
   return (
+    <HelmetProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomeView/>} />
@@ -17,6 +18,7 @@ function App() {
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
     </BrowserRouter>
+    </HelmetProvider>
   );
 }
 

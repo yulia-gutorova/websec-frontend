@@ -69,15 +69,8 @@ console.log(resp)
       </div>
 
       <div className={classes.boll}></div>
-<<<<<<< HEAD
       <div className={classes.myPageButtonCintainer}>
-        <button onClick={handleLogout} className={classes.myPageButton} >Log out</button>
-=======
-
-      <div id="myPageButtonContainer" className={classes.myPageButtonContainer}>
-        <button className={classes.myPageButton} onClick={pause}>Pause</button>
-        <button className={classes.myPageButton} >Log out</button>
->>>>>>> 0021583 (skapa test för frontend #52)
+        <button id="myPageLogoutButton" onClick={handleLogout} className={classes.myPageButton} >Log out</button>
       </div>
     </div>
   )

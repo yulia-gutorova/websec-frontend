@@ -10,7 +10,7 @@ class ElementInteractions{
         return element.should('not.exist');
     }
 
-    clickOnElement (element : Cypress.Chainable<JQuery<HTMLElement>>) {
+    clickOnElement (element : Cypress.Chainable<JQuery<HTMLElement>>| Cypress.Chainable<JQuery<HTMLButtonElement>>) {
         return element.click();
     }
 
@@ -41,6 +41,10 @@ class ElementInteractions{
     clearTextFromElement (element : Cypress.Chainable<JQuery<HTMLElement>>) {
         return element.clear();
     }  
+
+    getElementByText (text : string) {
+        return cy.contains(text);
+    }
     
     fillLoginForm(inputUsername : Cypress.Chainable<JQuery<HTMLElement>>, 
         username: string, 

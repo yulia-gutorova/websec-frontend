@@ -32,6 +32,7 @@ describe('Fill in form with existing user credentials', () => {
         elementInteractions.elementIsNotVisible(registrationPageLocators.RegisterErrorMessageUsername());
         elementInteractions.elementIsNotVisible(registrationPageLocators.RegisterErrorMessagePassword()); 
         elementInteractions.elementIsNotVisible(registrationPageLocators.RegisterErrorMessageCheckbox());
+        
         elementInteractions.elementIsVisible(registrationPageLocators.RegisterMessageUserAlredyExists());
 
         commonFunctions.waitForTime(2000);

@@ -9,13 +9,13 @@ import  data  from "../../fixtures/example.json";
  //================================================================================
  describe('Fill in form with existing user credentials', () => {
 
-    before(() => {
+    beforeEach(() => {
         //const url = Cypress.env('TEST_BASE_URL')+'/registration';
         //commonFunctions.navigateToPage(url);
         commonFunctions.navigateToPage("/login");
     })
 
-    it.skip('Login with invalid credentials', () => {
+    it('Login with invalid credentials', () => {
 
         elementInteractions.fillLoginForm(loginPageLocators.LoginFormUsernameInput(), 
                                         data[1].username, 
@@ -25,12 +25,11 @@ import  data  from "../../fixtures/example.json";
         commonFunctions.waitForTime(2000);
 
         elementInteractions.submitForm(loginPageLocators.LoginSubmitButton()); 
-        commonFunctions.waitForTime(2000);
-       
 
-        //elementInteractions.elementIsVisible(loginPageLocators.);
+        commonFunctions.waitForTime(10000);
+        elementInteractions.getElementByText("Username or password do not match")
         
-        commonFunctions.waitForTime(2000);
+         
     })
 
     it('Login with valid credentials', () => {
@@ -44,12 +43,10 @@ import  data  from "../../fixtures/example.json";
         commonFunctions.waitForTime(2000);
 
         elementInteractions.submitForm(loginPageLocators.LoginSubmitButton()); 
-        commonFunctions.waitForTime(2000);
         
         commonFunctions.waitForTime(10000);
 
-        commonFunctions.urlContains(`/${data[0].username}`);
-        
+        commonFunctions.urlContains(`/${data[0].username}`);   
     })
 
 

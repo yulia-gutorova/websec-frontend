@@ -6,7 +6,8 @@ import {loginPageLocators} from '../../support/elementLocators/LoginPageLocators
 
 describe('Visit login page', () => {
 
-    describe('Page elements are visible', () => {
+    describe('Page elements are visible', () => 
+    {
 
         before(() => {
             //cy.visit(Cypress.env('TEST_BASE_URL'));
@@ -38,4 +39,28 @@ describe('Visit login page', () => {
         })
 
     })
+
+        //================================================================================
+        describe('Check error messages', () => 
+        {
+
+            before(() => 
+            {
+                //const url = Cypress.env('TEST_BASE_URL')+'/registration';
+                //commonFunctions.navigateToPage(url);
+                commonFunctions.navigateToPage("/login");
+            })
+
+            it('error messages are visivle when submitting empty form', () => 
+            {
+
+                commonFunctions.waitForTime(2000);
+                elementInteractions.submitForm(loginPageLocators.LoginSubmitButton());
+                commonFunctions.waitForTime(2000);
+                
+                elementInteractions.getElementByText('Username is required'); 
+                elementInteractions.getElementByText('Password is required');
+            })
+
+        })
 })

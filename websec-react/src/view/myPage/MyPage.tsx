@@ -31,7 +31,7 @@ console.log(resp)
   const checkIfAuthed = async () => {
     try {
       const resp = await fetch(import.meta.env.VITE_BASE_URL + "/check-session", {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },

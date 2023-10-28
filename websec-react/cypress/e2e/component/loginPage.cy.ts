@@ -28,7 +28,16 @@ describe('Visit login page', () => {
             elementInteractions.elementIsVisible(loginPageLocators.LoginLinkToRegister());
             elementInteractions.elementIsVisible(loginPageLocators.LoginText());
             elementInteractions.elementIsVisible(loginPageLocators.LoginSubmitButton());
+            
 
+            //elementInteractions.elementIsNotVisible(loginPageLocators.LoginPasswordErrorMessageWrapper());
+           // elementInteractions.elementIsNotVisible(loginPageLocators.LoginUsernameErrorMessageWrapper());
+
+            elementInteractions.elementIsExist(loginPageLocators.LoginPasswordErrorMessageWrapper());
+            elementInteractions.elementIsExist(loginPageLocators.LoginUsernameErrorMessageWrapper());
+
+            elementInteractions.elementIsEmty(loginPageLocators.LoginPasswordErrorMessageWrapper());
+            elementInteractions.elementIsEmty(loginPageLocators.LoginUsernameErrorMessageWrapper());
 
             elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessagePassword());
             elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessageUsername());
@@ -58,8 +67,14 @@ describe('Visit login page', () => {
                 commonFunctions.waitForTime(2000);
 
                 elementInteractions.submitForm(loginPageLocators.LoginSubmitButton());
-                
+
                 commonFunctions.waitForTime(2000);
+
+                elementInteractions.elementIsExist(loginPageLocators.LoginPasswordErrorMessageWrapper());
+                elementInteractions.elementIsExist(loginPageLocators.LoginUsernameErrorMessageWrapper());
+    
+                elementInteractions.elementIsNotEmty(loginPageLocators.LoginPasswordErrorMessageWrapper());
+                elementInteractions.elementIsNotEmty(loginPageLocators.LoginUsernameErrorMessageWrapper());
                 
                 elementInteractions.getElementByText(loginPageLocators.LoginErrorMessagePasswordText()); 
                 elementInteractions.getElementByText(loginPageLocators.LoginErrorMessageUsernameText());

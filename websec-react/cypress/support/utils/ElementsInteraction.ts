@@ -48,6 +48,14 @@ class ElementInteractions{
     getElementByText (text : string) {
         return cy.contains(text);
     }
+
+    elementIsEmty (element : Cypress.Chainable<JQuery<HTMLElement>>) {
+        element.should('be.empty');
+    }
+
+    elementIsNotEmty (element : Cypress.Chainable<JQuery<HTMLElement>>) {
+        element.should('not.be.empty');
+    }
     
     fillLoginForm(inputUsername : Cypress.Chainable<JQuery<HTMLElement>>, 
         username: string, 

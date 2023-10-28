@@ -109,8 +109,9 @@ export const RegistrationView = () => {
               className={classes.registerInput}
               {...register("username", { required: true })}
             />
+
             <div className={classes.registerErrorWrapper}>
-              {errors.username && <span id="usernameError" className={classes.registerErrorText}>Username is required</span>}
+              {errors.username && <span className={classes.registerErrorText} id="usernameError" >Username is required</span>}
             </div>
           </div>
 
@@ -146,19 +147,18 @@ export const RegistrationView = () => {
             </label>
 
             <div className={classes.registerErrorWrapper}>
-              {errors.checkbox && <span id="checkboxError" className={classes.registerErrorText}>You must to agree to terms and conditions </span>}
+              {errors.checkbox && <span className={classes.registerErrorText} id="checkboxError" >You must to agree to terms and conditions </span>}
             </div>
           </div>
 
           <div>
-
             <button disabled={isLoading} type="submit" className={`${classes.registerButton} ${isLoading ? classes.noHoverEffect : ""}`}>{isLoading ? 'Submitting...' : 'Submit'}</button>
           </div>
 
           <div className={classes.registerErrorWrapper}>
 
            {errorMessage || !isCheckbox ?
-                (<span id="unexpectedError" className={!isSubmitSuccessful ? classes.registerSuccessText : classes.registerErrorText}>{errorMessage}</span>) 
+                (<span className={!isSubmitSuccessful ? classes.registerSuccessText : classes.registerErrorText} id="unexpectedError" >{errorMessage}</span>) 
                 : (isSubmitSuccessful ? (<span className={classes.registerSuccessText}>Register successfull</span>) : null)}  
           </div>
 

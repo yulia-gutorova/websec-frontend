@@ -48,7 +48,15 @@ class LoginPageLocators {
 
     LoginErrorMessageUsername() {
             return cy.get("#usernameError");
-    }    
+    }  
+    
+    LoginMessageLoginErrorText() {
+        return cy.get("#loginErrorText")
+    }
+
+    LoginLoginErrorWrapper() {
+        return cy.get("#loginErrorWrapper")
+    }
 
 }
 

@@ -16,7 +16,7 @@ export const LoginView = () => {
   window.onpopstate = function () {
     window.history.pushState(null, window.location.href);
   };
- 
+
 
 
 
@@ -30,14 +30,14 @@ export const LoginView = () => {
   } = useForm<IFormLoginInput>();
 
   const onSubmit: SubmitHandler<IFormLoginInput> = async (data) => {
-  
+
     const user = {
       username: data.username,
       password: data.password,
     };
 
     try {
-      setIsLoading(true); 
+      setIsLoading(true);
       const resp = await fetch(import.meta.env.VITE_BASE_URL + "/login", {
         method: "POST",
         headers: {
@@ -46,16 +46,16 @@ export const LoginView = () => {
         body: JSON.stringify(user),
         credentials: 'include',
       });
-     if (resp.status === 200) {
-       navigate(`/mypage/${user.username}`)
-     } else if(resp.status === 401) {
-      setErrorMessage("Username or password do not match")
-     }
-      
-  
+      if (resp.status === 200) {
+        navigate(`/mypage/${user.username}`)
+      } else if (resp.status === 401) {
+        setErrorMessage("Username or password do not match")
+      }
+
+
     } catch (error) {
       console.log(error);
-    }finally {
+    } finally {
       setIsLoading(false);
     }
   };
@@ -75,13 +75,14 @@ export const LoginView = () => {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}
-              id="loginForm"
-              className={classes.loginForm}>
+          id="loginForm"
+          className={classes.loginForm}>
 
           <div>
             <h1 id="loginFormHeader" className={classes.loginHeader}>Login</h1>
-          </div>
+          </div>    
 
+          {/* ------------- Username -----------------*/}     
           <div>
             <label htmlFor="username" className={classes.loginLabel}>
               Username:
@@ -94,9 +95,10 @@ export const LoginView = () => {
             />
 
             <div className={classes.loginErrorWrapper}>
-              {errors.username && <span id="usernameError" className={classes.registerErrorText}>Username is required</span>}
+              {errors.username && <span className={classes.loginErrorText} id="usernameError" >Username is required</span>}
             </div>
 
+            {/* ------------- Password -----------------*/}
             <label htmlFor="password" className={classes.loginLabel}>
               Password:
             </label>
@@ -107,11 +109,15 @@ export const LoginView = () => {
               {...register("password", { required: true })}
             />
 
-            <div className={classes.loginErrorWrapper}>
-              {errors.password && <span id="passworError" className={classes.registerErrorText}>Password is required</span>}
+            <div className={classes.loginErrorWrapper} id="loginErrorWrapper" >
+              {errors.password && <span className={classes.loginErrorText} id="passworError" >Password is required</span>}
             </div>
-            {errorMessage && <div className={classes.registerErrorText}>{errorMessage}</div>}
-            <button disabled={isLoading} type="submit" className={`${classes.loginButton} ${isLoading ? classes.noHoverEffect: ""} `}>{isLoading ? 'Submitting...' :'Submit'}</button>
+
+            <div  className={classes.loginErrorWrapper} id="loginErrorWrapper">
+              {errorMessage && <span className={classes.loginErrorText} id="loginErrorText" >{errorMessage}</span>}
+            </div>
+
+            <button disabled={isLoading} type="submit" className={`${classes.loginButton} ${isLoading ? classes.noHoverEffect : ""} `}>{isLoading ? 'Submitting...' : 'Submit'}</button>
 
           </div>
 
@@ -126,7 +132,7 @@ export const LoginView = () => {
 
         </form>
       </div>
-      
+
     </div>
   );
 };

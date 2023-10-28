@@ -6,7 +6,8 @@ import {loginPageLocators} from '../../support/elementLocators/LoginPageLocators
 
 describe('Visit login page', () => {
 
-    describe('Page elements are visible', () => {
+    describe('Page elements are visible', () => 
+    {
 
         before(() => {
             //cy.visit(Cypress.env('TEST_BASE_URL'));
@@ -26,7 +27,7 @@ describe('Visit login page', () => {
             elementInteractions.elementIsVisible(loginPageLocators.LoginText());
             elementInteractions.elementIsVisible(loginPageLocators.LoginSubmitButton());
 
-            commonFunctions.waitForTime(2000);
+            commonFunctions.waitForTime(3000);
         })
 
         it('not visible elements', () => {
@@ -34,8 +35,32 @@ describe('Visit login page', () => {
             elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessagePassword());
             elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessageUsername());
 
-            commonFunctions.waitForTime(2000);
+            commonFunctions.waitForTime(3000);
         })
 
     })
+
+        //================================================================================
+        describe('Check error messages', () => 
+        {
+
+            before(() => 
+            {
+                //const url = Cypress.env('TEST_BASE_URL')+'/registration';
+                //commonFunctions.navigateToPage(url);
+                commonFunctions.navigateToPage("/login");
+            })
+
+            it('error messages are visivle when submitting empty form', () => 
+            {
+
+                commonFunctions.waitForTime(2000);
+                elementInteractions.submitForm(loginPageLocators.LoginSubmitButton());
+                commonFunctions.waitForTime(2000);
+                
+                elementInteractions.getElementByText('Username is required'); 
+                elementInteractions.getElementByText('Password is required');
+            })
+
+        })
 })

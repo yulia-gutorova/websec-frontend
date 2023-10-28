@@ -63,14 +63,14 @@ console.log(resp)
       <meta name='My Page' content='Secured'></meta>
       </Helmet>
 
-      <div className={classes.myPageBanner}>
+      <div id="myPageBunner" className={classes.myPageBanner}>
         <h1 className={classes.myPageHeader}>Hello</h1>
         <p className={classes.myPageInfo}>This is your page, {name}</p>
       </div>
 
       <div className={classes.boll}></div>
       <div className={classes.myPageButtonCintainer}>
-        <button onClick={handleLogout} className={classes.myPageButton} >Log out</button>
+        <button id="myPageLogoutButton" onClick={handleLogout} className={classes.myPageButton} >Log out</button>
       </div>
     </div>
   )

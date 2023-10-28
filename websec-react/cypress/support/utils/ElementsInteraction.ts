@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-
+import { commonFunctions } from "./CommonFunctions";
 class ElementInteractions{
 
      elementIsVisible (element : Cypress.Chainable<JQuery<HTMLElement>>) {
@@ -10,7 +10,7 @@ class ElementInteractions{
         return element.should('not.exist');
     }
 
-    clickOnElement (element : Cypress.Chainable<JQuery<HTMLElement>>) {
+    clickOnElement (element : Cypress.Chainable<JQuery<HTMLElement>>| Cypress.Chainable<JQuery<HTMLButtonElement>>) {
         return element.click();
     }
 
@@ -41,6 +41,10 @@ class ElementInteractions{
     clearTextFromElement (element : Cypress.Chainable<JQuery<HTMLElement>>) {
         return element.clear();
     }  
+
+    getElementByText (text : string) {
+        return cy.contains(text);
+    }
     
     fillLoginForm(inputUsername : Cypress.Chainable<JQuery<HTMLElement>>, 
         username: string, 
@@ -48,7 +52,9 @@ class ElementInteractions{
         password: string) {
           
         inputUsername.type(username);
+        commonFunctions.waitForTime(2000);
         inputPassword.type(password);
+        commonFunctions.waitForTime(2000);
         }
 
     fillRegisterForm(inputUsername : Cypress.Chainable<JQuery<HTMLElement>>, 
@@ -59,14 +65,18 @@ class ElementInteractions{
             checkbox : boolean) {
 
     inputUsername.type(username);
+    commonFunctions.waitForTime(2000);
     inputPassword.type(password);
+    commonFunctions.waitForTime(2000);
 
     if (checkbox) {
     inputCheckbox.check();
+    commonFunctions.waitForTime(2000);
     }
     }
 
     submitForm( button : Cypress.Chainable<JQuery<HTMLElement>>) {
+    commonFunctions.waitForTime(2000);
     button.click();
     }
 

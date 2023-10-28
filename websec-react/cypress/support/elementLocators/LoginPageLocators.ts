@@ -41,6 +41,10 @@ class LoginPageLocators {
     LoginSubmitButton() {     
         return cy.get("button[type='submit']");
     }
+    
+
+
+    //========================== Error Messages ============================================
 
     LoginErrorMessagePassword() {
         return cy.get("#passwordError")
@@ -48,16 +52,30 @@ class LoginPageLocators {
 
     LoginErrorMessageUsername() {
             return cy.get("#usernameError");
-    }  
+    } 
     
-    LoginMessageLoginErrorText() {
-        return cy.get("#loginErrorText")
+    LoginErrorMessagePasswordText() {
+        return 'Password is required'
     }
 
-    LoginLoginErrorWrapper() {
-        return cy.get("#loginErrorWrapper")
+    LoginErrorMessageUsernameText() {
+            return 'Username is required'
+    } 
+    
+
+    LoginInvalidCredentyials() {
+        return cy.get("#loginInvalidCredentyials")
     }
 
-}
+    LoginUsernameErrorMessageWrapper() {
+        return cy.get('#loginUsernameErrorMessageWrapper')
+    }
+
+    LoginPasswordErrorMessageWrapper()  {
+        return cy.get('#loginPasswordErrorMessageWrapper')
+    }
+    }
+
+
 
 export const loginPageLocators = new LoginPageLocators();

@@ -9,34 +9,35 @@ describe('Visit login page', () => {
     describe('Page elements are visible', () => 
     {
 
-        before(() => {
+        beforeEach(() => {
             //cy.visit(Cypress.env('TEST_BASE_URL'));
             //commonFunctions.navigateToPage(Cypress.env('TEST_BASE_URL'));
             commonFunctions.navigateToPage("/login");
         })
 
-        it('visible elements', () => {
+        it('visible and not visible elements', () => {
 
             elementInteractions.elementIsVisible(loginPageLocators.LoginForm()); 
             elementInteractions.elementIsVisible(loginPageLocators.LoginFormHeader());  
             elementInteractions.elementIsVisible(loginPageLocators.LoginFormUsernameLabel());
             elementInteractions.elementIsVisible(loginPageLocators.LoginFormPasswordLabel());   
             elementInteractions.elementIsVisible(loginPageLocators.LoginFormUsernameInput());
+
             elementInteractions.elementIsVisible(loginPageLocators.LoginFormPasswordInput());
+
             elementInteractions.elementIsVisible(loginPageLocators.LoginLinkToRegister());
             elementInteractions.elementIsVisible(loginPageLocators.LoginText());
             elementInteractions.elementIsVisible(loginPageLocators.LoginSubmitButton());
 
-            commonFunctions.waitForTime(3000);
-        })
-
-        it('not visible elements', () => {
 
             elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessagePassword());
             elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessageUsername());
 
             commonFunctions.waitForTime(3000);
+
+            commonFunctions.waitForTime(3000);
         })
+
 
     })
 
@@ -55,11 +56,13 @@ describe('Visit login page', () => {
             {
 
                 commonFunctions.waitForTime(2000);
+
                 elementInteractions.submitForm(loginPageLocators.LoginSubmitButton());
+                
                 commonFunctions.waitForTime(2000);
                 
-                elementInteractions.getElementByText('Username is required'); 
-                elementInteractions.getElementByText('Password is required');
+                elementInteractions.getElementByText(loginPageLocators.LoginErrorMessagePasswordText()); 
+                elementInteractions.getElementByText(loginPageLocators.LoginErrorMessageUsernameText());
             })
 
         })

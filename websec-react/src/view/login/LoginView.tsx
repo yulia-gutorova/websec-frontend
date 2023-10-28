@@ -94,8 +94,8 @@ export const LoginView = () => {
               {...register("username", { required: true })}
             />
 
-            <div className={classes.loginErrorWrapper}>
-              {errors.username && <span className={classes.loginErrorText} id="usernameError" >Username is required</span>}
+            <div className={classes.loginUsernameErrorMessageWrapper} id="loginUsernameErrorMessageWrapper" >
+              {errors.username && <span data-testid="usernameError" className={classes.loginErrorText} id="usernameError" >Username is required</span>}
             </div>
 
             {/* ------------- Password -----------------*/}
@@ -109,13 +109,14 @@ export const LoginView = () => {
               {...register("password", { required: true })}
             />
 
-            <div className={classes.loginErrorWrapper} id="loginErrorWrapper" >
+            <div className={classes.loginPasswordErrorMessageWrapper} id="loginPasswordErrorMessageWrapper" >
               {errors.password && <span className={classes.loginErrorText} id="passworError" >Password is required</span>}
+              {errorMessage && <span className={classes.loginErrorText} id="loginInvalidCredentyials" >{errorMessage}</span>}
             </div>
 
-            <div  className={classes.loginErrorWrapper} id="loginErrorWrapper">
+{/*             <div  className={classes.loginErrorWrapper} id="loginErrorWrapper">
               {errorMessage && <span className={classes.loginErrorText} id="loginErrorText" >{errorMessage}</span>}
-            </div>
+            </div> */}
 
             <button disabled={isLoading} type="submit" className={`${classes.loginButton} ${isLoading ? classes.noHoverEffect : ""} `}>{isLoading ? 'Submitting...' : 'Submit'}</button>
 

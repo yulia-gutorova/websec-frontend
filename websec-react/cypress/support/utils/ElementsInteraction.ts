@@ -5,6 +5,9 @@ class ElementInteractions{
      elementIsVisible (element : Cypress.Chainable<JQuery<HTMLElement>>) {
         return element.should('be.visible');
     }
+    elementIsExist (element : Cypress.Chainable<JQuery<HTMLElement>>) {
+        return element.should('exist');
+    }
 
     elementIsNotVisible (element : Cypress.Chainable<JQuery<HTMLElement>>) {
         return element.should('not.exist');

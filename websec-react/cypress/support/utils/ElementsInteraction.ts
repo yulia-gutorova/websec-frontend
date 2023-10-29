@@ -2,7 +2,7 @@
 import { commonFunctions } from "./CommonFunctions";
 class ElementInteractions{
 
-     elementIsVisible (element : Cypress.Chainable<JQuery<HTMLElement>>) {
+    elementIsVisible (element : Cypress.Chainable<JQuery<HTMLElement>>) {
         return element.should('be.visible');
     }
     elementIsExist (element : Cypress.Chainable<JQuery<HTMLElement>>) {
@@ -45,8 +45,8 @@ class ElementInteractions{
         return element.clear();
     }  
 
-    getElementByText (text : string) {
-        return cy.contains(text);
+    elementWithTextIsVisible (text : string) {
+        cy.contains(text).should('be.visible');
     }
 
     elementIsEmty (element : Cypress.Chainable<JQuery<HTMLElement>>) {
@@ -67,6 +67,7 @@ class ElementInteractions{
         inputPassword.type(password);
         commonFunctions.waitForTime(2000);
         }
+
 
     fillRegisterForm(inputUsername : Cypress.Chainable<JQuery<HTMLElement>>, 
             username: string, 

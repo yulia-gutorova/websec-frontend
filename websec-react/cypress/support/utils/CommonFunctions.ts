@@ -8,7 +8,6 @@ export class CommonFunctions {
         cy.url().should('include', url);
     }
    
-
     waitForTime(time: number) {
         cy.wait(time);
     }   

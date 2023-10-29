@@ -37,7 +37,6 @@ describe('Fill in form with existing user credentials', () => {
 
         commonFunctions.waitForTime(2000);
     })
-
-    
+  
 
 })

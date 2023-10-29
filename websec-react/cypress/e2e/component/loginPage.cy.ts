@@ -44,9 +44,7 @@ describe('Visit login page', () => {
 
             commonFunctions.waitForTime(3000);
 
-            commonFunctions.waitForTime(3000);
         })
-
 
     })
 
@@ -61,7 +59,7 @@ describe('Visit login page', () => {
                 commonFunctions.navigateToPage("/login");
             })
 
-            it('error messages are visivle when submitting empty form', () => 
+            it('error messages are visible when submitting empty form', () => 
             {
 
                 commonFunctions.waitForTime(2000);
@@ -76,8 +74,12 @@ describe('Visit login page', () => {
                 elementInteractions.elementIsNotEmty(loginPageLocators.LoginPasswordErrorMessageWrapper());
                 elementInteractions.elementIsNotEmty(loginPageLocators.LoginUsernameErrorMessageWrapper());
                 
-                elementInteractions.getElementByText(loginPageLocators.LoginErrorMessagePasswordText()); 
-                elementInteractions.getElementByText(loginPageLocators.LoginErrorMessageUsernameText());
+                //elementInteractions.getElementByText(loginPageLocators.LoginErrorMessagePasswordText()); 
+                //elementInteractions.getElementByText(loginPageLocators.LoginErrorMessageUsernameText());
+                //cy.contains(loginPageLocators.LoginErrorMessagePasswordText()).should('be.visible');
+                
+                elementInteractions.elementWithTextIsVisible(loginPageLocators.LoginErrorMessagePasswordText());
+                elementInteractions.elementWithTextIsVisible(loginPageLocators.LoginErrorMessageUsernameText());
             })
 
         })

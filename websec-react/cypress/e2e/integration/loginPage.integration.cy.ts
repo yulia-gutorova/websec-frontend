@@ -27,7 +27,7 @@ import  data  from "../../fixtures/example.json";
         elementInteractions.submitForm(loginPageLocators.LoginSubmitButton()); 
 
         commonFunctions.waitForTime(10000);
-        elementInteractions.getElementByText("Username or password do not match")
+        elementInteractions.elementWithTextIsVisible(loginPageLocators.LoginErrorMessageUsernameOrPasswordDoNotMatch());
         
          
     })

@@ -61,6 +61,11 @@ class LoginPageLocators {
     LoginErrorMessageUsernameText() {
             return 'Username is required'
     } 
+
+    LoginErrorMessageUsernameOrPasswordDoNotMatch() {
+        return 'Username or password do not match'
+} 
+
     
 
     LoginInvalidCredentyials() {

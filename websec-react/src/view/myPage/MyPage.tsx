@@ -15,7 +15,7 @@ export const MyPage = () => {
  
 const handleLogout  = async () => {
   const resp = await fetch(import.meta.env.VITE_BASE_URL + "/logout", {
-    method: "POST",
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },

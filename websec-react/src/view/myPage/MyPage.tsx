@@ -38,6 +38,13 @@ console.log(resp)
         credentials: "include",
       });
       
+      if(resp.status === 200) {
+        const data = await resp.json()
+        const username = data.user.username;
+        navigate(`/mypage/${username}`)
+      }
+
+
       if (resp.status === 401) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
 

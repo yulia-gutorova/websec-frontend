@@ -3,6 +3,7 @@ import { LoginView } from "./view/login/LoginView";
 import { MyPage } from "./view/myPage/MyPage";
 import { RegistrationView } from "./view/registration/RegistrationView";
 import { HomeView } from "./view/home/HomeView";
+import PrivacyPolicy from "./view/policy/PrivacyPolicy";
 import { HelmetProvider } from "react-helmet-async";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/registration" element={<RegistrationView />} />
         <Route path="/mypage/:name" element={ <MyPage />}/> 
         <Route path="*" element={<h1>Page not found</h1>} />
+        <Route path="/policy" element={<PrivacyPolicy/>}/>
       </Routes>
     </BrowserRouter>
     </HelmetProvider>

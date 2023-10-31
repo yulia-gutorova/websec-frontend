@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import classes from "./styles/RegistrationView.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-
+import { useConsent } from "react-hook-consent";
 interface IFormInput {
   username: string;
   password: string;
@@ -14,16 +14,33 @@ interface IFormInput {
 
 export const RegistrationView = () => {
 
+  const {toggleBanner} = useConsent();
+
+
   const [errorMessage, setErrorMessage] = useState("")
   const [isCheckbox, setIsCheckbox] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-
+  const [cookieConsent, setCookieConsent] = useState(false)
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitSuccessful },
   } = useForm<IFormInput>();
+
+
+
+ const exportCookiesFromLocalStorage = () => {
+
+  const accessTokenObj = JSON.parse(localStorage.getItem("react-hook-consent") || '{}');
+  const cookieBoolean = accessTokenObj["consent"][0] === "essentials"
+  console.log(cookieBoolean)
+  setCookieConsent(cookieBoolean);
+}  
+ 
+useEffect(() => {
+  exportCookiesFromLocalStorage();
+}, [exportCookiesFromLocalStorage]);
 
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
@@ -143,7 +160,7 @@ export const RegistrationView = () => {
               {...register("checkbox", { required: true })}
             />
             <label htmlFor="checkbox" className={classes.registerCheckboxLabel}>
-              I agree to the Privacy Policy
+             <Link to="/policy">I agree to the Privacy Policy</Link>
             </label>
 
             <div className={classes.registerErrorWrapper}>
@@ -152,7 +169,7 @@ export const RegistrationView = () => {
           </div>
 
           <div>
-            <button disabled={isLoading} type="submit" className={`${classes.registerButton} ${isLoading ? classes.noHoverEffect : ""}`}>{isLoading ? 'Submitting...' : 'Submit'}</button>
+            <button disabled={isLoading || !cookieConsent} type="submit" className={`${classes.registerButton} ${isLoading || !cookieConsent ? classes.noHoverEffect : ""}`}>{isLoading ? 'Submitting...' : 'Submit'}</button>
           </div>
 
           <div className={classes.registerErrorWrapper}>
@@ -172,6 +189,8 @@ export const RegistrationView = () => {
 
         </form>
       </div>
+      <button onClick={() => toggleBanner()} className={classes.registerButton}>I want to consent to cookies</button>
+            {!cookieConsent && <div>"Consent for essential cookies is required to register"</div>}
     </div>
   );
 };

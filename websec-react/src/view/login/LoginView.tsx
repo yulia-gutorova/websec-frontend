@@ -2,9 +2,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import classes from "./styles/LoginView.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-
+import { useConsent } from "react-hook-consent";
 interface IFormLoginInput {
   username: string;
   password: string;
@@ -18,16 +18,34 @@ export const LoginView = () => {
   };
 
 
-
+const {toggleBanner} = useConsent()
 
   const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
+  const [cookieConsent, setCookieConsent] = useState(false)
+
   const navigate = useNavigate()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IFormLoginInput>();
+
+
+  const exportCookiesFromLocalStorage = () => {
+
+    const accessTokenObj = JSON.parse(localStorage.getItem("react-hook-consent") || '{}');
+    const cookieBoolean = accessTokenObj["consent"][0] === "essentials"
+    console.log(cookieBoolean)
+    setCookieConsent(cookieBoolean);
+  }  
+   
+  useEffect(() => {
+    exportCookiesFromLocalStorage();
+  }, [exportCookiesFromLocalStorage]);
+  
+
+
 
   const onSubmit: SubmitHandler<IFormLoginInput> = async (data) => {
 
@@ -118,8 +136,7 @@ export const LoginView = () => {
               {errorMessage && <span className={classes.loginErrorText} id="loginErrorText" >{errorMessage}</span>}
             </div> */}
 
-            <button disabled={isLoading} type="submit" className={`${classes.loginButton} ${isLoading ? classes.noHoverEffect : ""} `}>{isLoading ? 'Submitting...' : 'Submit'}</button>
-
+            <button disabled={isLoading || !cookieConsent} type="submit" className={`${classes.loginButton} ${isLoading || !cookieConsent ? classes.noHoverEffect : ""} `}>{isLoading ? 'Submitting...' : 'Submit'}</button>
           </div>
 
           <hr className={classes.hr} />
@@ -133,7 +150,8 @@ export const LoginView = () => {
 
         </form>
       </div>
-
+<button onClick={() => toggleBanner()} className={classes.loginButton}>I want to consent to cookies</button>
+{!cookieConsent && <div>"Consent for essential cookies is required to register"</div>}
     </div>
   );
 };

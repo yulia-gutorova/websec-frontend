@@ -1,7 +1,5 @@
 /// <reference types="cypress" />
 
-import {commonFunctions} from '../../support/utils/CommonFunctions';   
-import {elementInteractions} from '../../support/utils/ElementsInteraction';
 import {loginPageLocators} from '../../support/elementLocators/LoginPageLocators';  
 import  data  from "../../fixtures/example.json";
 
@@ -12,41 +10,40 @@ import  data  from "../../fixtures/example.json";
     beforeEach(() => {
         //const url = Cypress.env('TEST_BASE_URL')+'/registration';
         //commonFunctions.navigateToPage(url);
-        commonFunctions.navigateToPage("/login");
+        cy.navigateToPage("/login");
     })
 
     it('Login with invalid credentials', () => {
 
-        elementInteractions.fillLoginForm(loginPageLocators.LoginFormUsernameInput(), 
+        cy.fillLoginForm(loginPageLocators.LoginFormUsernameInput(), 
                                         data[1].username, 
                                         loginPageLocators.LoginFormPasswordInput(), 
                                         data[1].password); 
                                 
-        commonFunctions.waitForTime(2000);
+        cy.waitForTime(2000);
 
-        elementInteractions.submitForm(loginPageLocators.LoginSubmitButton()); 
+        cy.submitForm(loginPageLocators.LoginSubmitButton()); 
 
-        commonFunctions.waitForTime(10000);
-        elementInteractions.elementWithTextIsVisible(loginPageLocators.LoginErrorMessageUsernameOrPasswordDoNotMatch());
+        cy.waitForTime(10000);
+        cy.elementWithTextIsVisible(loginPageLocators.LoginErrorMessageUsernameOrPasswordDoNotMatch());
         
          
     })
 
     it('Login with valid credentials', () => {
 
-
-        elementInteractions.fillLoginForm(loginPageLocators.LoginFormUsernameInput(), 
+        cy.fillLoginForm(loginPageLocators.LoginFormUsernameInput(), 
                                         data[0].username, 
                                         loginPageLocators.LoginFormPasswordInput(), 
                                         data[0].password); 
                                 
-        commonFunctions.waitForTime(2000);
+        cy.waitForTime(2000);
 
-        elementInteractions.submitForm(loginPageLocators.LoginSubmitButton()); 
+        cy.submitForm(loginPageLocators.LoginSubmitButton()); 
         
-        commonFunctions.waitForTime(10000);
+        cy.waitForTime(10000);
 
-        commonFunctions.urlContains(`/${data[0].username}`);   
+        cy.urlContains(`/${data[0].username}`);   
     })
 
 

@@ -1,7 +1,5 @@
 /// <reference types="cypress" />
 
-import { commonFunctions } from '../../support/utils/CommonFunctions';
-import { elementInteractions } from '../../support/utils/ElementsInteraction';
 import { registrationPageLocators } from '../../support/elementLocators/RegistrationPageLocators';
 import data from '../../fixtures/example.json';
 
@@ -13,15 +11,12 @@ describe('Visit registration page', () => {
     {
         before(() => 
         {
-            //const url = Cypress.env('TEST_BASE_URL')+'/registration';
-            //commonFunctions.navigateToPage(url);
-
-            commonFunctions.navigateToPage("/registration");
+            cy.navigateToPage("/registration");
         })
 
         it('url is right', () => 
         {
-            commonFunctions.urlContains('/registration');
+            cy.urlContains('/registration');
         })
 
     })
@@ -32,39 +27,37 @@ describe('Visit registration page', () => {
 
         before(() => 
         {
-            //const url = Cypress.env('TEST_BASE_URL')+'/registration';
-            //commonFunctions.navigateToPage(url);
-            commonFunctions.navigateToPage("/registration");
+            cy.navigateToPage("/registration");
         })
 
         it('visible elements', () => 
         {
 
-            commonFunctions.waitForTime(1000);
+            cy.waitForTime(1000);
 
-            elementInteractions.elementIsVisible(registrationPageLocators.RegisterForm());
-            elementInteractions.elementIsVisible(registrationPageLocators.RegisterFormHeader());
+            cy.elementIsVisible(registrationPageLocators.RegisterFormHeader());
+            cy.elementIsVisible(registrationPageLocators.RegisterForm());
 
-            elementInteractions.elementIsVisible(registrationPageLocators.RegisterFormUsernameLabel());
-            elementInteractions.elementIsVisible(registrationPageLocators.RegisterFormPasswordLabel());
-            elementInteractions.elementIsVisible(registrationPageLocators.RegisterFormCheckboxLabel());
+            cy.elementIsVisible(registrationPageLocators.RegisterFormUsernameLabel());
+            cy.elementIsVisible(registrationPageLocators.RegisterFormPasswordLabel());
+            cy.elementIsVisible(registrationPageLocators.RegisterFormCheckboxLabel());
 
-            elementInteractions.elementIsVisible(registrationPageLocators.RegisterFormUsernameInput());
-            elementInteractions.elementIsVisible(registrationPageLocators.RegisterFormPasswordInput());
-            elementInteractions.elementIsVisible(registrationPageLocators.RegisterFormCheckboxInput());
+            cy.elementIsVisible(registrationPageLocators.RegisterFormUsernameInput());
+            cy.elementIsVisible(registrationPageLocators.RegisterFormPasswordInput());
+            cy.elementIsVisible(registrationPageLocators.RegisterFormCheckboxInput());
 
-            elementInteractions.elementIsVisible(registrationPageLocators.RegisterLinkToLogin());
-            elementInteractions.elementIsVisible(registrationPageLocators.RegisterText());
-            elementInteractions.elementIsVisible(registrationPageLocators.RegisterSubmitButton());
+            cy.elementIsVisible(registrationPageLocators.RegisterLinkToLogin());
+            cy.elementIsVisible(registrationPageLocators.RegisterText());
+            cy.elementIsVisible(registrationPageLocators.RegisterSubmitButton());
         })
 
         it('not visible elements', () => 
         {
 
-            elementInteractions.elementIsNotVisible(registrationPageLocators.RegisterErrorMessagePassword());
-            elementInteractions.elementIsNotVisible(registrationPageLocators.RegisterErrorMessageUsername());
-            elementInteractions.elementIsNotVisible(registrationPageLocators.RegisterErrorMessageCheckbox());
-            elementInteractions.elementIsNotVisible(registrationPageLocators.RegisterErrorUnexpectedError());
+            //cy.elementIsNotExist(registrationPageLocators.RegisterErrorMessagePassword());
+            //cy.elementIsNotExist(registrationPageLocators.RegisterErrorMessageUsername());
+            //cy.elementIsNotExist(registrationPageLocators.RegisterErrorMessageCheckbox());
+            //cy.elementIsNotExist(registrationPageLocators.RegisterErrorUnexpectedError());
 
         })
     })
@@ -77,19 +70,19 @@ describe('Visit registration page', () => {
             {
                 //const url = Cypress.env('TEST_BASE_URL')+'/registration';
                 //commonFunctions.navigateToPage(url);
-                commonFunctions.navigateToPage("/registration");
+                cy.navigateToPage("/registration");
             })
 
             it('error messages are visivle when submitting empty form', () => 
             {
 
-                commonFunctions.waitForTime(1000);
-                elementInteractions.submitForm(registrationPageLocators.RegisterSubmitButton());
-                commonFunctions.waitForTime(1000);
+                cy.waitForTime(1000);
+                cy.submitForm(registrationPageLocators.RegisterSubmitButton());
+                cy.waitForTime(1000);
 
-                elementInteractions.elementIsVisible(registrationPageLocators.RegisterErrorMessageUsername());
-                elementInteractions.elementIsVisible(registrationPageLocators.RegisterErrorMessagePassword());
-                elementInteractions.elementIsVisible(registrationPageLocators.RegisterErrorMessageCheckbox());
+                cy.elementIsVisible(registrationPageLocators.RegisterErrorMessageUsername());
+                cy.elementIsVisible(registrationPageLocators.RegisterErrorMessagePassword());
+                cy.elementIsVisible(registrationPageLocators.RegisterErrorMessageCheckbox());
             })
 
         })

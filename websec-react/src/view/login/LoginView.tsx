@@ -128,7 +128,7 @@ const {toggleBanner} = useConsent()
             />
 
             <div className={classes.loginPasswordErrorMessageWrapper} id="loginPasswordErrorMessageWrapper" >
-              {errors.password && <span className={classes.loginErrorText} id="passworError" >Password is required</span>}
+              {errors.password && <span className={classes.loginErrorText} id="passwordError" >Password is required</span>}
               {errorMessage && <span className={classes.loginErrorText} id="loginInvalidCredentyials" >{errorMessage}</span>}
             </div>
 

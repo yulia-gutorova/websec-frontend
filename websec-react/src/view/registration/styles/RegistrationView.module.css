@@ -21,32 +21,31 @@
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
-    top: 50%;
+    top: 45%;
     background-color: #080710;
 }
 
 .registerArea .shapeOne, .shapeTwo {
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
     position: absolute;
     border-radius: 50%;
 }
 
 .shapeOne {
-    background: linear-gradient(#1845ad,
-        #23a2f6);
-    left: -80px;
-    top: -80px;
+    background: linear-gradient(#1845ad,#23a2f6);
+    left: -50px;
+    top: -50px;
 }
 
 .shapeTwo {
     background: linear-gradient(to right, #f09819, #ff512f);
-    right: -30px;
-    bottom: -80px;
+    right: -50px;
+    bottom: -60px;
 }
 
-.registerForm{
-    height: 560px;
+.formWrapper {
+    height: 550px;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -58,7 +57,33 @@
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 30px 35px;
+}
+.registerForm{
 
+}
+
+.registerCookieConsentWrapper{
+    text-align: center;
+    vertical-align : middle;
+
+}
+
+.registerCookieConsentLink{
+    width: 100%;
+    background-color: rgba(151, 128, 121, 0.3);
+    border-radius: 15px;    
+    color: white;
+    text-decoration: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.registerCookieConsentError {
+    font-style: italic;
+    color: orangered;
+    font-size: 14px;
 }
 
 .registerForm * {
@@ -71,9 +96,9 @@
 
 .registerHeader {
     color: white;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 500;
-    line-height: 28px;
+    line-height: 24px;
     text-align: center;
 }
 
@@ -87,7 +112,7 @@
 
 .registerInput {
     display: block;
-    height: 50px;
+    height: 40px;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.07);
     border-radius: 3px;
@@ -110,21 +135,12 @@
 }
 
 .registerButton {
-/*     margin-top: 30px;
-    width: 100%;
-    background-color: #ffffff;
-    color: #080710;
-    padding: 15px 0;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 5px;
-    cursor: pointer; */
     padding: 15px 0;
     font-size: 18px;
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 30px;
+    margin-top: 20px;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.27);
     color: #eaf0fb;
@@ -140,8 +156,8 @@
 pointer-events: none;
 }
 .hr {
-    margin: 20px 0 20px 0;
-    border: 1px solid red
+    margin: 10px 0 20px 0;
+    border: 1px solid orangered
 }
 
 .backLink {
@@ -168,7 +184,7 @@ pointer-events: none;
     margin-top: 10px;
     font-size: 14px;
     font-weight: 300;
-    min-height: 20px;
+    min-height: 15px;
     font-style: italic;
 }
 

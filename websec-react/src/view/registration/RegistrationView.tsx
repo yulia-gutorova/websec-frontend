@@ -30,13 +30,18 @@ export const RegistrationView = () => {
 
 
 
- const exportCookiesFromLocalStorage = () => {
-
-  const accessTokenObj = JSON.parse(localStorage.getItem("react-hook-consent") || '{}');
-  const cookieBoolean = accessTokenObj["consent"][0] === "essentials"
-  console.log(cookieBoolean)
-  setCookieConsent(cookieBoolean);
-}  
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const exportCookiesFromLocalStorage = () => {
+     
+    try {
+      const accessTokenObj = JSON.parse(localStorage.getItem("react-hook-consent") || '{}');
+      const cookieBoolean = accessTokenObj["consent"][0] === "essentials"
+      console.log(cookieBoolean)
+      setCookieConsent(cookieBoolean);
+    } catch (error) {
+      setCookieConsent(false)
+    }
+   }  
  
 useEffect(() => {
   exportCookiesFromLocalStorage();

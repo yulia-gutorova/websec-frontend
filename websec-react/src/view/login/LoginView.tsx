@@ -32,19 +32,28 @@ const {toggleBanner} = useConsent()
   } = useForm<IFormLoginInput>();
 
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const exportCookiesFromLocalStorage = () => {
-
-    const accessTokenObj = JSON.parse(localStorage.getItem("react-hook-consent") || '{}');
-    const cookieBoolean = accessTokenObj["consent"][0] === "essentials"
-    console.log(cookieBoolean)
-    setCookieConsent(cookieBoolean);
+     
+   try {
+     const accessTokenObj = JSON.parse(localStorage.getItem("react-hook-consent") || '{}');
+     const cookieBoolean = accessTokenObj["consent"][0] === "essentials"
+     console.log(cookieBoolean)
+     setCookieConsent(cookieBoolean);
+   } catch (error) {
+     setCookieConsent(false)
+   }
   }  
    
   useEffect(() => {
     exportCookiesFromLocalStorage();
   }, [exportCookiesFromLocalStorage]);
   
+ 
 
+
+
+  
 
 
   const onSubmit: SubmitHandler<IFormLoginInput> = async (data) => {

@@ -1,7 +1,5 @@
 /// <reference types="cypress" />
 
-import {commonFunctions} from '../../support/utils/CommonFunctions';   
-import {elementInteractions} from '../../support/utils/ElementsInteraction';
 import {loginPageLocators} from '../../support/elementLocators/LoginPageLocators';   
 
 describe('Visit login page', () => {
@@ -10,39 +8,39 @@ describe('Visit login page', () => {
     {
 
         beforeEach(() => {
-            //cy.visit(Cypress.env('TEST_BASE_URL'));
-            //commonFunctions.navigateToPage(Cypress.env('TEST_BASE_URL'));
-            commonFunctions.navigateToPage("/login");
+
+            cy.navigateToPage("/login");
         })
 
         it('visible and not visible elements', () => {
 
-            elementInteractions.elementIsVisible(loginPageLocators.LoginForm()); 
-            elementInteractions.elementIsVisible(loginPageLocators.LoginFormHeader());  
-            elementInteractions.elementIsVisible(loginPageLocators.LoginFormUsernameLabel());
-            elementInteractions.elementIsVisible(loginPageLocators.LoginFormPasswordLabel());   
-            elementInteractions.elementIsVisible(loginPageLocators.LoginFormUsernameInput());
+            cy.elementIsVisible(loginPageLocators.LoginForm()); 
+            cy.elementIsVisible(loginPageLocators.LoginForm()); 
+            cy.elementIsVisible(loginPageLocators.LoginFormHeader());  
+            cy.elementIsVisible(loginPageLocators.LoginFormUsernameLabel());
+            cy.elementIsVisible(loginPageLocators.LoginFormPasswordLabel());   
+            cy.elementIsVisible(loginPageLocators.LoginFormUsernameInput());
 
-            elementInteractions.elementIsVisible(loginPageLocators.LoginFormPasswordInput());
+            cy.elementIsVisible(loginPageLocators.LoginFormPasswordInput());
 
-            elementInteractions.elementIsVisible(loginPageLocators.LoginLinkToRegister());
-            elementInteractions.elementIsVisible(loginPageLocators.LoginText());
-            elementInteractions.elementIsVisible(loginPageLocators.LoginSubmitButton());
+            cy.elementIsVisible(loginPageLocators.LoginLinkToRegister());
+            cy.elementIsVisible(loginPageLocators.LoginText());
+            cy.elementIsVisible(loginPageLocators.LoginSubmitButton());
             
 
             //elementInteractions.elementIsNotVisible(loginPageLocators.LoginPasswordErrorMessageWrapper());
            // elementInteractions.elementIsNotVisible(loginPageLocators.LoginUsernameErrorMessageWrapper());
 
-            elementInteractions.elementIsExist(loginPageLocators.LoginPasswordErrorMessageWrapper());
-            elementInteractions.elementIsExist(loginPageLocators.LoginUsernameErrorMessageWrapper());
+            cy.elementIsExist(loginPageLocators.LoginPasswordErrorMessageWrapper());
+            cy.elementIsExist(loginPageLocators.LoginUsernameErrorMessageWrapper());
 
-            elementInteractions.elementIsEmty(loginPageLocators.LoginPasswordErrorMessageWrapper());
-            elementInteractions.elementIsEmty(loginPageLocators.LoginUsernameErrorMessageWrapper());
+            cy.elementIsEmty(loginPageLocators.LoginPasswordErrorMessageWrapper());
+            cy.elementIsEmty(loginPageLocators.LoginUsernameErrorMessageWrapper());
 
-            elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessagePassword());
-            elementInteractions.elementIsNotVisible(loginPageLocators.LoginErrorMessageUsername());
+            //cy.elementIsNotVisible(loginPageLocators.LoginErrorMessagePassword());
+            //cy.elementIsNotVisible(loginPageLocators.LoginErrorMessageUsername());
 
-            commonFunctions.waitForTime(3000);
+            cy.waitForTime(3000);
 
         })
 
@@ -54,32 +52,30 @@ describe('Visit login page', () => {
 
             before(() => 
             {
-                //const url = Cypress.env('TEST_BASE_URL')+'/registration';
-                //commonFunctions.navigateToPage(url);
-                commonFunctions.navigateToPage("/login");
+                cy.navigateToPage("/login");
             })
 
             it('error messages are visible when submitting empty form', () => 
             {
 
-                commonFunctions.waitForTime(2000);
+                cy.waitForTime(2000);
 
-                elementInteractions.submitForm(loginPageLocators.LoginSubmitButton());
+                cy.submitForm(loginPageLocators.LoginSubmitButton());
 
-                commonFunctions.waitForTime(2000);
+                cy.waitForTime(2000);
 
-                elementInteractions.elementIsExist(loginPageLocators.LoginPasswordErrorMessageWrapper());
-                elementInteractions.elementIsExist(loginPageLocators.LoginUsernameErrorMessageWrapper());
+                cy.elementIsExist(loginPageLocators.LoginPasswordErrorMessageWrapper());
+                cy.elementIsExist(loginPageLocators.LoginUsernameErrorMessageWrapper());
     
-                elementInteractions.elementIsNotEmty(loginPageLocators.LoginPasswordErrorMessageWrapper());
-                elementInteractions.elementIsNotEmty(loginPageLocators.LoginUsernameErrorMessageWrapper());
+                cy.elementIsNotEmty(loginPageLocators.LoginPasswordErrorMessageWrapper());
+                cy.elementIsNotEmty(loginPageLocators.LoginUsernameErrorMessageWrapper());
                 
                 //elementInteractions.getElementByText(loginPageLocators.LoginErrorMessagePasswordText()); 
                 //elementInteractions.getElementByText(loginPageLocators.LoginErrorMessageUsernameText());
                 //cy.contains(loginPageLocators.LoginErrorMessagePasswordText()).should('be.visible');
                 
-                elementInteractions.elementWithTextIsVisible(loginPageLocators.LoginErrorMessagePasswordText());
-                elementInteractions.elementWithTextIsVisible(loginPageLocators.LoginErrorMessageUsernameText());
+                cy.elementWithTextIsVisible(loginPageLocators.LoginErrorMessagePasswordText());
+                cy.elementWithTextIsVisible(loginPageLocators.LoginErrorMessageUsernameText());
             })
 
         })

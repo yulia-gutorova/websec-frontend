@@ -23,7 +23,7 @@ jobs:
 
       - name: Set Environment Variables
         run: |
-          echo "VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}" >> .env.production
+          echo "VITE_BASE_URL=${{ secrets.VITE_BASE_URL }} VITE_APP_SITE_KEY=${{secrets.VITE_APP_SITE_KEY}} VITE_SITE_SECRET=${{secrets.VITE_SITE_SECRET}}" >> .env.production
 
       - name: Run build
         run: npm run build

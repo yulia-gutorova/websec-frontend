@@ -69,8 +69,7 @@ export const RegistrationView = () => {
 
         setErrorMessage("")
         reset();
-        console.clear();
-
+ 
         if (resp.status === 409) {
           // Handle the 409 status code
           const data = await resp.json();

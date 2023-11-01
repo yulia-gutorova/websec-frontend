@@ -14,18 +14,24 @@ export const MyPage = () => {
   };
  
 const handleLogout  = async () => {
-  const resp = await fetch(import.meta.env.VITE_BASE_URL + "/logout", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  });
-  if (resp.status === 200) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    navigate('/login')
+  try {
+    
+    const resp = await fetch(import.meta.env.VITE_BASE_URL + "/logout", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    if (resp.status === 200) {
+       await resp.text()
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      navigate('/login')
+    }
+  
+  } catch (error) {
+    console.error(error)
   }
-console.log(resp)
 }
 
   const checkIfAuthed = async () => {

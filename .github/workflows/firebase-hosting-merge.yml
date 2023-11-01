@@ -22,10 +22,11 @@ jobs:
         run: npm install
 
       - name: Set Environment Variables
+        working-directory: websec-react
         run: |
-         echo "VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}" > websec-react/.env.production
-         echo "VITE_APP_SITE_KEY=${{ secrets.VITE_APP_SITE_KEY }}" >> websec-react/.env.production
-         echo "VITE_SITE_SECRET=${{ secrets.VITE_SITE_SECRET }}" >> websec-react/.env.production
+          echo "VITE_BASE_URL=***" > .env.production
+          echo "VITE_APP_SITE_KEY=***" >> .env.production
+          echo "VITE_SITE_SECRET=***" >> .env.production
 
       - name: Run build
         run: npm run build

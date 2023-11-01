@@ -22,7 +22,7 @@ export const LoginView = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [cookieConsent, setCookieConsent] = useState(false);
-  const [recaptchaSuccessful,setRecaptchaSuccessful] = useState(false)
+  const [recaptchaSuccessful, setRecaptchaSuccessful] = useState(false)
 
 
   const navigate = useNavigate();
@@ -52,22 +52,22 @@ export const LoginView = () => {
   }, [exportCookiesFromLocalStorage]);
 
   const onChange = async () => {
-  
+
     if (recaptchaReference.current !== null) {
       const recaptchaValue = await recaptchaReference.current.getValue();
-  /*     console.log("Rec value ", recaptchaValue);  */
+      /*     console.log("Rec value ", recaptchaValue);  */
 
       const res = await fetch(import.meta.env.VITE_BASE_URL + '/verify', {
         method: "POST",
-        body: JSON.stringify({recaptchaValue}),
+        body: JSON.stringify({ recaptchaValue }),
         headers: {
-          "Content-Type" : "application/json"
+          "Content-Type": "application/json"
         }
       })
       if (res.status === 200) {
         setRecaptchaSuccessful(true)
       }
-  }
+    }
   };
 
   const onSubmit: SubmitHandler<IFormLoginInput> = async (data) => {
@@ -112,116 +112,116 @@ export const LoginView = () => {
           <div className={classes.shapeTwo}></div>
         </div>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          id="loginForm"
-          className={classes.loginForm}
-        >
-          <div>
-            <h1 id="loginFormHeader" className={classes.loginHeader}>
-              Login
-            </h1>
-          </div>
-
-          {/* ------------- Username -----------------*/}
-          <div>
-            <label htmlFor="username" className={classes.loginLabel}>
-              Username:
-            </label>
-            <input
-              id="username"
-              type="text"
-              className={classes.loginInput}
-              {...register("username", { required: true })}
-            />
-
-            <div
-              className={classes.loginUsernameErrorMessageWrapper}
-              id="loginUsernameErrorMessageWrapper"
-            >
-              {errors.username && (
-                <span
-                  data-testid="usernameError"
-                  className={classes.loginErrorText}
-                  id="usernameError"
-                >
-                  Username is required
-                </span>
-              )}
+        <div className={classes.loginFormWrapper}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            id="loginForm"
+            className={classes.loginForm}
+          >
+            <div>
+              <h1 id="loginFormHeader" className={classes.loginHeader}>
+                Login
+              </h1>
             </div>
 
-            {/* ------------- Password -----------------*/}
-            <label htmlFor="password" className={classes.loginLabel}>
-              Password:
-            </label>
-            <input
-              id="password"
-              type="password"
-              className={classes.loginInput}
-              {...register("password", { required: true })}
-            />
+            {/* ------------- Username -----------------*/}
+            <div>
+              <label htmlFor="username" className={classes.loginLabel}>
+                Username:
+              </label>
+              <input
+                id="username"
+                type="text"
+                className={classes.loginInput}
+                {...register("username", { required: true })}
+              />
 
-            <div
-              className={classes.loginPasswordErrorMessageWrapper}
-              id="loginPasswordErrorMessageWrapper"
-            >
-              {errors.password && (
-                <span className={classes.loginErrorText} id="passwordError">
-                  Password is required
-                </span>
-              )}
-              {errorMessage && (
-                <span
-                  className={classes.loginErrorText}
-                  id="loginInvalidCredentyials"
-                >
-                  {errorMessage}
-                </span>
-              )}
-            </div>
+              <div
+                className={classes.loginUsernameErrorMessageWrapper}
+                id="loginUsernameErrorMessageWrapper"
+              >
+                {errors.username && (
+                  <span
+                    data-testid="usernameError"
+                    className={classes.loginErrorText}
+                    id="usernameError"
+                  >
+                    Username is required
+                  </span>
+                )}
+              </div>
 
-            {/*             <div  className={classes.loginErrorWrapper} id="loginErrorWrapper">
+              {/* ------------- Password -----------------*/}
+              <label htmlFor="password" className={classes.loginLabel}>
+                Password:
+              </label>
+              <input
+                id="password"
+                type="password"
+                className={classes.loginInput}
+                {...register("password", { required: true })}
+              />
+
+              <div className={classes.loginPasswordErrorMessageWrapper} id="loginPasswordErrorMessageWrapper">
+                {errors.password && (
+                  <span className={classes.loginErrorText} id="passwordError">Password is required</span>)}
+                {errorMessage && (
+                  <span
+                    className={classes.loginErrorText}
+                    id="loginInvalidCredentyials"
+                  >
+                    {errorMessage}
+                  </span>
+                )}
+              </div>
+
+              {/*             <div  className={classes.loginErrorWrapper} id="loginErrorWrapper">
               {errorMessage && <span className={classes.loginErrorText} id="loginErrorText" >{errorMessage}</span>}
             </div> */}
 
-            <button
-              disabled={isLoading || !cookieConsent || !recaptchaSuccessful}
-              type="submit"
-              className={`${classes.loginButton} ${
-                isLoading || !cookieConsent || !recaptchaSuccessful ? classes.noHoverEffect : ""
-              } `}
-            >
-              {isLoading ? "Submitting..." : "Submit"}
-            </button>
-            <ReCAPTCHA
-            theme="dark"
-              onChange={onChange}
-              ref={recaptchaReference}
-              sitekey={import.meta.env.VITE_APP_SITE_KEY}
-              onExpired={ ()=>setRecaptchaSuccessful(false)}
-              
-            />
+              <button
+                disabled={isLoading || !cookieConsent || !recaptchaSuccessful}
+                type="submit"
+                className={`${classes.loginButton} ${isLoading || !cookieConsent || !recaptchaSuccessful ? classes.noHoverEffect : ""
+                  } `}
+              >
+                {isLoading ? "Submitting..." : "Submit"}
+              </button>
+
+              <div className={classes.loginReCaptchaWrapper}>
+                <ReCAPTCHA
+                  theme="dark"
+                  onChange={onChange}
+                  ref={recaptchaReference}
+                  sitekey={import.meta.env.VITE_APP_SITE_KEY}
+                  onExpired={() => setRecaptchaSuccessful(false)}
+                />
+              </div>
+
+            </div>
+
+            <hr className={classes.hr} />
+
+            <div>
+              <span>Don't have an account?</span>
+              <Link to="/registration" className={classes.link}>
+                <span className={classes.backLink}>
+                  {" "}
+                  &ensp; &ensp;{"< "}Register
+                </span>
+              </Link>
+            </div>
+          </form>
+
+          <div className={classes.loginCookieConsentWrapper}>
+            <p onClick={() => toggleBanner()} className={classes.loginCookieConsentLink}>I want to consent to cookies</p>
+            {!cookieConsent && (<p className={classes.loginCookieConsentError}>"Consent for essential cookies is required"</p>)}
           </div>
 
-          <hr className={classes.hr} />
+        </div>{/* formWrapper */}
 
-          <div>
-            <span>Don't have an account?</span>
-            <Link to="/registration" className={classes.link}>
-              <span className={classes.backLink}>
-                {" "}
-                &ensp; &ensp;{"< "}Register
-              </span>
-            </Link>
-          </div>
-        </form>
       </div>
-      <button onClick={() => toggleBanner()} className={classes.loginButton}>
-        I want to consent to cookies
-      </button>
-      {!cookieConsent && (
-        <div>"Consent for essential cookies is required to register"</div>
-      )}
+
     </div>
   );
 };

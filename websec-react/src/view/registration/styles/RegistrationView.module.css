@@ -17,7 +17,7 @@
 
 .registerArea{
     width: 430px;
-    height: 580px;
+    height: 600px;
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
@@ -26,26 +26,26 @@
 }
 
 .registerArea .shapeOne, .shapeTwo {
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
     position: absolute;
     border-radius: 50%;
 }
 
 .shapeOne {
     background: linear-gradient(#1845ad,#23a2f6);
-    left: -50px;
-    top: -50px;
+    left: -60px;
+    top: -60px;
 }
 
 .shapeTwo {
     background: linear-gradient(to right, #f09819, #ff512f);
     right: -50px;
-    bottom: -60px;
+    bottom: -50px;
 }
 
-.formWrapper {
-    height: 550px;
+.registerFormWrapper {
+    height: 580px;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -56,34 +56,10 @@
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-    padding: 30px 35px;
+    padding: 20px 25px;
 }
 .registerForm{
 
-}
-
-.registerCookieConsentWrapper{
-    text-align: center;
-    vertical-align : middle;
-
-}
-
-.registerCookieConsentLink{
-    width: 100%;
-    background-color: rgba(151, 128, 121, 0.3);
-    border-radius: 15px;    
-    color: white;
-    text-decoration: none;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.registerCookieConsentError {
-    font-style: italic;
-    color: orangered;
-    font-size: 14px;
 }
 
 .registerForm * {
@@ -114,12 +90,13 @@
     display: block;
     height: 40px;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.07);
+    background-color: rgba(232, 240, 255);
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;
     font-size: 14px;
     font-weight: 300;
+    color: black;
 }
 
 
@@ -155,6 +132,7 @@
 .noHoverEffect{
 pointer-events: none;
 }
+
 .hr {
     margin: 10px 0 20px 0;
     border: 1px solid orangered
@@ -169,6 +147,7 @@ pointer-events: none;
 }
 
 .registerCheckboxWrapper{
+
     display: inline-block;
     vertical-align: middle;
 }
@@ -180,11 +159,12 @@ pointer-events: none;
 
 }
 
+/* Messages */
 .registerErrorWrapper{
     margin-top: 10px;
     font-size: 14px;
     font-weight: 300;
-    min-height: 15px;
+    min-height: 20px;
     font-style: italic;
 }
 
@@ -196,4 +176,30 @@ pointer-events: none;
 .registerSuccessText {
     font-style: oblique;
     color: rgb(124, 31, 211);
+}
+
+
+/* Consent */
+
+.registerCookieConsentWrapper{
+    text-align: center;
+    vertical-align : middle;
+}
+
+.registerCookieConsentLink{
+    width: 100%;
+    background-color: rgba(151, 128, 121, 0.3);
+    border-radius: 15px;    
+    color: white;
+    text-decoration: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.registerCookieConsentError {
+    font-style: italic;
+    color: orangered;
+    font-size: 14px;
 }

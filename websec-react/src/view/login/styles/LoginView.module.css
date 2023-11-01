@@ -17,7 +17,7 @@
 
 .loginArea{
     width: 430px;
-    height: 550px;
+    height: 600px;
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
@@ -34,18 +34,18 @@
 
 .shapeOne {
     background: linear-gradient(#2c8017,#84b996, #a1efbb);
-    left: 300px;
-    top: -80px;
+    left: 290px;
+    top: -60px;
 }
 
 .shapeTwo {
     background: linear-gradient(to right, #e427c2, #dba8d8);
-    right: 300px;
-    bottom: -80px;
+    right: 290px;
+    bottom: -60px;
 }
 
-.loginForm{
-    height: 520px;
+.loginFormWrapper {
+    height: 580px;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -56,7 +56,10 @@
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-    padding: 30px 35px;
+    padding: 20px 25px;
+}
+
+.loginForm{
 
 }
 
@@ -70,15 +73,15 @@
 
 .loginHeader {
     color: white;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 500;
-    line-height: 28px;
+    line-height: 24px;
     text-align: center;
 }
 
 .loginLabel {
     display: block;
-    margin-top: 30px;
+    margin-top: 10px;
     font-size: 16px;
     font-weight: 500;
 
@@ -86,9 +89,9 @@
 
 .loginInput {
     display: block;
-    height: 50px;
+    height: 40px;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.07);
+    background-color: rgba(232, 240, 255);
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;
@@ -98,26 +101,18 @@
 }
 
 .loginButton {
-/*     margin-top: 50px;
-    width: 100%;
-    background-color: #ffffff;
-    color: #080710;
-    padding: 15px 0;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 5px;
-    cursor: pointer; */
     padding: 15px 0;
     font-size: 18px;
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 30px;
+    margin-top: 20px;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.27);
     color: #eaf0fb;
     text-align: center;
 }
+
 .loginButton:hover {
     background-color: rgba(255, 255, 255, 0.47);
 }   
@@ -127,7 +122,7 @@
     }
 
 .hr {
-    margin: 20px 0 20px 0;
+    margin: 10px 0 20px 0;
     border: 1px solid green
 }
 
@@ -139,8 +134,10 @@
     text-decoration: none;
 }
 
-.loginUsernameErrorMessageWrapper
-.loginPasswordErrorMessageWrapper{
+
+/* Messages */
+.loginPasswordErrorMessageWrapper,
+.loginUsernameErrorMessageWrapper{
     margin-top: 10px;
     font-size: 14px;
     font-weight: 300;
@@ -149,4 +146,37 @@
 
 .loginErrorText {
     color: orangered;
+}
+
+
+/* Consent */
+.loginCookieConsentWrapper{
+    text-align: center;
+    vertical-align : middle;
+}
+
+.loginCookieConsentLink{
+    width: 100%;
+    background-color: rgba(151, 128, 121, 0.3);
+    border-radius: 15px;    
+    color: white;
+    text-decoration: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.loginCookieConsentError {
+    font-style: italic;
+    color: orangered;
+    font-size: 14px;
+}
+
+.loginReCaptchaWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
 }

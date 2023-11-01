@@ -109,7 +109,7 @@ export const RegistrationView = () => {
           <div className={classes.shapeTwo}></div>
         </div>
 
-        <div className={classes.formWrapper}>
+        <div className={classes.registerFormWrapper}>
           <form
             onSubmit={handleSubmit(onSubmit)}
             id="registerForm"

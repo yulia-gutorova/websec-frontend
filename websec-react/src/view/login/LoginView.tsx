@@ -52,10 +52,10 @@ export const LoginView = () => {
   }, [exportCookiesFromLocalStorage]);
 
   const onChange = async () => {
-
+  
     if (recaptchaReference.current !== null) {
       const recaptchaValue = await recaptchaReference.current.getValue();
-    /*   console.log("Rec value ", recaptchaValue); */
+  /*     console.log("Rec value ", recaptchaValue);  */
 
       const res = await fetch(import.meta.env.VITE_BASE_URL + '/verify', {
         method: "POST",
@@ -67,8 +67,7 @@ export const LoginView = () => {
       if (res.status === 200) {
         setRecaptchaSuccessful(true)
       }
-/*       console.log(res) 
- */    }
+  }
   };
 
   const onSubmit: SubmitHandler<IFormLoginInput> = async (data) => {
@@ -186,7 +185,7 @@ export const LoginView = () => {
             </div> */}
 
             <button
-              disabled={isLoading || !cookieConsent || ! recaptchaSuccessful}
+              disabled={isLoading || !cookieConsent || !recaptchaSuccessful}
               type="submit"
               className={`${classes.loginButton} ${
                 isLoading || !cookieConsent || !recaptchaSuccessful ? classes.noHoverEffect : ""
@@ -199,6 +198,8 @@ export const LoginView = () => {
               onChange={onChange}
               ref={recaptchaReference}
               sitekey={import.meta.env.VITE_APP_SITE_KEY}
+              onExpired={ ()=>setRecaptchaSuccessful(false)}
+              
             />
           </div>
 

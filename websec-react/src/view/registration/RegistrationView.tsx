@@ -36,7 +36,6 @@ export const RegistrationView = () => {
     try {
       const accessTokenObj = JSON.parse(localStorage.getItem("react-hook-consent") || '{}');
       const cookieBoolean = accessTokenObj["consent"][0] === "essentials"
-      console.log(cookieBoolean)
       setCookieConsent(cookieBoolean);
     } catch (error) {
       setCookieConsent(false)

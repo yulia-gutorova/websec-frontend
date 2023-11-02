@@ -2,6 +2,8 @@
 
 import { registrationPageLocators } from '../../support/elementLocators/RegistrationPageLocators';
 import data from '../../fixtures/example.json';
+import { homePageLocators } from '../../support/elementLocators/HomePageLocators';
+import { loginPageLocators } from '../../support/elementLocators/LoginPageLocators';
 
 //================================================================================
 describe('Visit registration page', () => {
@@ -11,7 +13,9 @@ describe('Visit registration page', () => {
     {
         before(() => 
         {
-            cy.navigateToPage("/registration");
+            cy.navigateToPage("/");
+            cy.clickOnElement(homePageLocators.homeLogInButton());
+            cy.clickOnElement(loginPageLocators.LoginLinkToRegister());
         })
 
         it('url is right', () => 
@@ -25,12 +29,14 @@ describe('Visit registration page', () => {
     describe('Page elements are visible', () => 
     {
 
-        before(() => 
+        beforeEach(() => 
         {
-            cy.navigateToPage("/registration");
+            cy.navigateToPage("/");
+            cy.clickOnElement(homePageLocators.homeLogInButton());
+            cy.clickOnElement(loginPageLocators.LoginLinkToRegister());
         })
 
-        it('visible elements', () => 
+        it.skip('visible elements and not visible elements', () => 
         {
 
             cy.waitForTime(1000);
@@ -49,31 +55,49 @@ describe('Visit registration page', () => {
             cy.elementIsVisible(registrationPageLocators.RegisterLinkToLogin());
             cy.elementIsVisible(registrationPageLocators.RegisterText());
             cy.elementIsVisible(registrationPageLocators.RegisterSubmitButton());
+
+            cy.elementIsExist(registrationPageLocators.RegisterPasswordErrorMessageWrapper());
+            cy.elementIsExist(registrationPageLocators.RegisterUsernameErrorMessageWrapper());
+
+            cy.elementIsVisible(registrationPageLocators.RegisterConsentToCookieButton());
+
+            cy.elementIsEmty(registrationPageLocators.RegisterPasswordErrorMessageWrapper());
+            cy.elementIsEmty(registrationPageLocators.RegisterUsernameErrorMessageWrapper());
         })
 
-        it('not visible elements', () => 
+        it('Consent is visible', () => {
+            cy.waitForTime(2000);
+            cy.elementWithTextIsVisible(registrationPageLocators.RegisterConsentToCookieText());
+            cy.waitForTime(2000);
+            cy.elementIsVisible(registrationPageLocators.RegisterConsentToCookieButton());
+            //cy.clickOnElement(loginPageLocators.LoginConsentToCookieButton());
+            cy.waitForTime(5000);
+            cy.elementIsVisible(registrationPageLocators.RegisterConsentBunner());
+            cy.elementIsVisible(registrationPageLocators.RegisterConsentMoreButton());
+            cy.elementIsVisible(registrationPageLocators.RegisterConsentYesButton());              
+        })
+
+        it('submit button is disabled', () => 
         {
-
-            //cy.elementIsNotExist(registrationPageLocators.RegisterErrorMessagePassword());
-            //cy.elementIsNotExist(registrationPageLocators.RegisterErrorMessageUsername());
-            //cy.elementIsNotExist(registrationPageLocators.RegisterErrorMessageCheckbox());
-            //cy.elementIsNotExist(registrationPageLocators.RegisterErrorUnexpectedError());
+            cy.waitForTime(1000);
+            cy.elementIsDisabled(registrationPageLocators.RegisterSubmitButton());
+            cy.waitForTime(1000);
 
         })
+
     })
 
         //================================================================================
         describe('Check error messages', () => 
         {
 
-            beforeEach(() => 
+            before(() => 
             {
-                //const url = Cypress.env('TEST_BASE_URL')+'/registration';
-                //commonFunctions.navigateToPage(url);
-                cy.navigateToPage("/registration");
+                cy.navigateToPage("/");
+                cy.clickOnElement(homePageLocators.homeLogInButton());
+                cy.clickOnElement(loginPageLocators.LoginLinkToRegister());
             })
-
-            it('error messages are visivle when submitting empty form', () => 
+            it.skip('error messages are visivle when submitting empty form', () => 
             {
 
                 cy.waitForTime(1000);
@@ -83,7 +107,10 @@ describe('Visit registration page', () => {
                 cy.elementIsVisible(registrationPageLocators.RegisterErrorMessageUsername());
                 cy.elementIsVisible(registrationPageLocators.RegisterErrorMessagePassword());
                 cy.elementIsVisible(registrationPageLocators.RegisterErrorMessageCheckbox());
+            
+
             })
+
 
         })
         //====

@@ -213,9 +213,12 @@ export const LoginView = () => {
             </div>
           </form>
 
-          <div className={classes.loginCookieConsentWrapper}>
-            <p onClick={() => toggleBanner()} className={classes.loginCookieConsentLink}>I want to consent to cookies</p>
-            {!cookieConsent && (<p className={classes.loginCookieConsentError}>"Consent for essential cookies is required"</p>)}
+          <div className={classes.loginCookieConsentWrapper} id="loginCookieConsentWrapper">
+            <button onClick={() => toggleBanner()} className={classes.loginCookieConsentLink}>I want to consent to cookies</button>
+            <div className={classes.loginCookieConsentErrorWrapper} id="loginCookieConsentErrorWrapper">
+              {!cookieConsent && (<p className={classes.loginCookieConsentError}>"Consent for essential cookies is required"</p>)}
+            </div>
+
           </div>
 
         </div>{/* formWrapper */}

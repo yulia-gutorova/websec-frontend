@@ -41,9 +41,29 @@ class LoginPageLocators {
     LoginSubmitButton() {     
         return cy.get("button[type='submit']");
     }
+
+    LoginConsentToCookieButton() {     
+        return cy.get('button').contains("I want to consent to cookies");
+    }
+
+    LoginConsentBunner() {
+        return cy.get('.rhc-banner');
+    }
+
+    LoginConsentMoreButton() {     
+        return cy.get('button').contains("More");
+    }
+
+    LoginConsentYesButton() {     
+        return cy.get('button').contains("Yes");
+    }
+
+    LoginConsentNoButton() {     
+        return cy.get('button').contains("No");
+    }
     
-
-
+    
+    
     //========================== Error Messages ============================================
 
     LoginErrorMessagePassword() {
@@ -53,7 +73,20 @@ class LoginPageLocators {
     LoginErrorMessageUsername() {
             return cy.get("#usernameError");
     } 
-    
+
+    LoginUsernameErrorMessageWrapper() {
+        return cy.get('#loginUsernameErrorMessageWrapper')
+    }
+
+    LoginPasswordErrorMessageWrapper()  {
+        return cy.get('#loginPasswordErrorMessageWrapper')
+    }
+
+    LoginConsentToCookieErrorWrapper() {     
+        return cy.get('#loginCookieConsentErrorWrapper');
+    }
+
+    //========================== Error Messages Text ========================================
     LoginErrorMessagePasswordText() {
         return 'Password is required'
     }
@@ -64,22 +97,25 @@ class LoginPageLocators {
 
     LoginErrorMessageUsernameOrPasswordDoNotMatch() {
         return 'Username or password do not match'
-} 
+    } 
 
-    
+    LoginErrorMessageConsentIsRequired() {
+        return 'Consent for essential cookies is required'
+    } 
 
-    LoginInvalidCredentyials() {
-        return cy.get("#loginInvalidCredentyials")
+    LoginConsentToCookieText() {     
+        return "I want to consent to cookies";
     }
 
-    LoginUsernameErrorMessageWrapper() {
-        return cy.get('#loginUsernameErrorMessageWrapper')
+/*     LoginInvalidCredentials() {
+        return cy.get("#loginInvalidCredentials")
+    } */
+    LoginConsentBunnerText() {     
+        return "Can we use cookies and external services according to our";
     }
+     
 
-    LoginPasswordErrorMessageWrapper()  {
-        return cy.get('#loginPasswordErrorMessageWrapper')
-    }
-    }
+}
 
 
 

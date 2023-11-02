@@ -132,7 +132,7 @@ export const RegistrationView = () => {
                 {...register("username", { required: true })}
               />
 
-              <div className={classes.registerErrorWrapper}>
+              <div className={classes.registerErrorWrapper} id="registerUsernameErrorMessageWrapper">
                 {errors.username && <span className={classes.registerErrorText} id="usernameError" >Username is required</span>}
               </div>
             </div>
@@ -149,7 +149,7 @@ export const RegistrationView = () => {
                 {...register("password", { required: true })}
               />
 
-              <div className={classes.registerErrorWrapper}>
+              <div className={classes.registerErrorWrapper} id="registerPasswordErrorMessageWrapper">
                 {errors.password && <span className={classes.registerErrorText} id="passwordError">Password is required</span>}
               </div>
 
@@ -168,7 +168,7 @@ export const RegistrationView = () => {
                 <Link to="/policy">I agree to the Privacy Policy</Link>
               </label>
 
-              <div className={classes.registerErrorWrapper}>
+              <div className={classes.registerErrorWrapper} id="registerCheckboxErrorMessageWrapper'">
                 {errors.checkbox && <span className={classes.registerErrorText} id="checkboxError" >You must to agree to terms and conditions </span>}
               </div>
             </div>
@@ -195,7 +195,7 @@ export const RegistrationView = () => {
           </form>
 
           <div className={classes.registerCookieConsentWrapper}>
-            <p onClick={() => toggleBanner()} className={classes.registerCookieConsentLink}>I want to consent to cookies</p>
+            <button onClick={() => toggleBanner()} className={classes.registerCookieConsentLink}>I want to consent to cookies</button>
             {!cookieConsent &&  <p className={classes.registerCookieConsentError}>Consent for essential cookies is required</p>}
           </div>
 

@@ -42,7 +42,7 @@ declare namespace Cypress {
         urlContains(url: string): Chainable<any>;
         waitForTime(time: number): Chainable<any>;
 
-        elementIsVisible(element : Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
+        elementIsVisible(element : Cypress.Chainable<JQuery<HTMLElement>> | Cypress.Chainable<JQuery<HTMLButtonElement>>): Chainable<any>;
         elementIsExist(element : Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
         elementIsNotExist(element : Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
         elementIsNotVisible(element : Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
@@ -69,6 +69,9 @@ declare namespace Cypress {
             checkbox : boolean): Chainable<any>;
 
         submitForm(button : Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
+        elementIsDisabled(button : Cypress.Chainable<JQuery<HTMLElement>>| Cypress.Chainable<JQuery<HTMLButtonElement>>): Chainable<any>;
+        elementIsEnabled(button : Cypress.Chainable<JQuery<HTMLElement>>| Cypress.Chainable<JQuery<HTMLButtonElement>>): Chainable<any>;
+        confirmCaptcha(): Chainable<any>;
 
     }
 } 
@@ -88,7 +91,7 @@ Cypress.Commands.add('waitForTime', (time: number) => {
 
 
 // Element interactions =========================================================================================
-Cypress.Commands.add('elementIsVisible', (element : Cypress.Chainable<JQuery<HTMLElement>>) => {
+Cypress.Commands.add('elementIsVisible', (element : Cypress.Chainable<JQuery<HTMLElement>> | Cypress.Chainable<JQuery<HTMLButtonElement>>) => {
     element.should('be.visible');
 })
 
@@ -103,7 +106,15 @@ Cypress.Commands.add('elementIsNotExist', (element : Cypress.Chainable<JQuery<HT
     element.should('not.exist');
 })
 
-Cypress.Commands.add('clickOnElement', (element : Cypress.Chainable<JQuery<HTMLElement>>| Cypress.Chainable<JQuery<HTMLButtonElement>>) => {
+Cypress.Commands.add('elementIsDisabled', (element : Cypress.Chainable<JQuery<HTMLElement>>| Cypress.Chainable<JQuery<HTMLButtonElement>>) => {
+    element.should('be.disabled');
+})
+
+Cypress.Commands.add('elementIsEnabled', (element : Cypress.Chainable<JQuery<HTMLElement>>| Cypress.Chainable<JQuery<HTMLButtonElement>>) => {
+    element.should('be.enabled');
+})
+
+Cypress.Commands.add('clickOnElement', (element : Cypress.Chainable<JQuery<HTMLElement>>| Cypress.Chainable<JQuery<HTMLButtonElement>> ) => {
     element.click();
 })
 
@@ -161,6 +172,10 @@ Cypress.Commands.add('submitForm', (button : Cypress.Chainable<JQuery<HTMLElemen
     button.click();
 })
 
+Cypress.Commands.add('confirmCaptcha', () => {
+        cy.waitForTime(5000);
+        cy.get('iframe').then(($iframe) => {cy.wrap($iframe.contents()).find('body').then(($body) => {cy.wrap($body).find('#recaptcha-anchor')})})
+})
 
 
 /* checkElement (element : Cypress.Chainable<JQuery<HTMLElement>>) {

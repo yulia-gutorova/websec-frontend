@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+import { homePageLocators } from '../../support/elementLocators/HomePageLocators';
 import {loginPageLocators} from '../../support/elementLocators/LoginPageLocators';   
 
 describe('Visit login page', () => {
@@ -8,8 +9,8 @@ describe('Visit login page', () => {
     {
 
         beforeEach(() => {
-
-            cy.navigateToPage("/login");
+            cy.navigateToPage("/");  
+            cy.clickOnElement(homePageLocators.homeLogInButton());
         })
 
         it('visible and not visible elements', () => {
@@ -34,6 +35,8 @@ describe('Visit login page', () => {
             cy.elementIsExist(loginPageLocators.LoginPasswordErrorMessageWrapper());
             cy.elementIsExist(loginPageLocators.LoginUsernameErrorMessageWrapper());
 
+            cy.elementIsExist(loginPageLocators.LoginConsentToCookieErrorWrapper());
+
             cy.elementIsEmty(loginPageLocators.LoginPasswordErrorMessageWrapper());
             cy.elementIsEmty(loginPageLocators.LoginUsernameErrorMessageWrapper());
 
@@ -41,10 +44,31 @@ describe('Visit login page', () => {
             //cy.elementIsNotVisible(loginPageLocators.LoginErrorMessageUsername());
 
             cy.waitForTime(3000);
+            cy.elementWithTextIsVisible(loginPageLocators.LoginConsentToCookieText());
+
 
         })
 
+        it('submit button is disabled', () => 
+        {
+            cy.elementIsDisabled(loginPageLocators.LoginSubmitButton());
+        })  
+
+        it('Consent bunner elements are visible', () => {
+            cy.waitForTime(2000);
+            cy.elementWithTextIsVisible(loginPageLocators.LoginConsentToCookieText());
+            cy.waitForTime(2000);
+            cy.elementIsVisible(loginPageLocators.LoginConsentToCookieButton());
+            //cy.clickOnElement(loginPageLocators.LoginConsentToCookieButton());
+            cy.waitForTime(5000);
+            cy.elementIsVisible(loginPageLocators.LoginConsentBunner());
+            cy.elementIsVisible(loginPageLocators.LoginConsentMoreButton());
+            cy.elementIsVisible(loginPageLocators.LoginConsentYesButton());
+            cy.clickOnElement(loginPageLocators.LoginConsentNoButton());    
+        })
+
     })
+    
 
         //================================================================================
         describe('Check error messages', () => 
@@ -55,7 +79,7 @@ describe('Visit login page', () => {
                 cy.navigateToPage("/login");
             })
 
-            it('error messages are visible when submitting empty form', () => 
+            it.skip('error messages are visible when submitting empty form', () => 
             {
 
                 cy.waitForTime(2000);

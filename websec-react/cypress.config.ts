@@ -10,10 +10,11 @@ export default defineConfig({
     baseUrl : baseUrl,
     video: false,
     screenshotOnRunFailure : false,
+    chromeWebSecurity: false,
     setupNodeEvents(on, config) {
     },
   },
-
+  chromeWebSecurity: false,
   component: {
     devServer: {
       framework: "react",

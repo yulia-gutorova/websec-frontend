@@ -50,6 +50,29 @@ class RegistrationPageLocators {
         return cy.get("button[type='submit']");
     }
 
+    //========================== Consent ============================================
+    RegisterConsentToCookieButton() {     
+        return cy.get('button').contains("I want to consent to cookies");
+    }
+
+    RegisterConsentBunner() {
+        return cy.get('.rhc-banner');
+    }
+
+    RegisterConsentMoreButton() {     
+        return cy.get('button').contains("More");
+    }
+
+    RegisterConsentYesButton() {     
+        return cy.get('button').contains("Yes");
+    }
+
+    RegisterConsentNoButton() {     
+        return cy.get('button').contains("No");
+    }
+
+
+    //========================== Error Messages ============================================
     RegisterErrorMessagePassword() {
         return cy.get("#passwordError")
     }
@@ -66,6 +89,26 @@ class RegistrationPageLocators {
         return cy.get("#unexpectedError");
     }
 
+    //========================== Error Messages Wrappers ============================================
+    
+    RegisterUsernameErrorMessageWrapper() {
+        return cy.get('#registerUsernameErrorMessageWrapper')
+    }
+
+    RegisterPasswordErrorMessageWrapper()  {
+        return cy.get('#registerPasswordErrorMessageWrapper')
+    }
+
+    RegisterCheckboxErrorMessageWrapper()  {
+        return cy.get('#registerCheckboxErrorMessageWrapper')
+    }
+
+    RegisterConsentToCookieErrorWrapper() {     
+        return cy.get('#registerCookieConsentErrorWrapper');
+    }
+
+
+    //========================== Get element by Text ============================================
     RegisterSuccessMessage() {
         return cy.get("span").contains("Registration successful!");
     }
@@ -73,9 +116,17 @@ class RegistrationPageLocators {
     RegisterMessageUserAlredyExists() {
         return cy.get("span").contains("User already exist");
     }
+
+    RegisterConsentToCookieText() {     
+        return "I want to consent to cookies";
+    }
+
+    RegisterConsentBunnerText() {     
+        return "Can we use cookies and external services according to our";
+    }
+
+
     
-
-
 }
 
 export const registrationPageLocators = new RegistrationPageLocators();

@@ -1,20 +1,22 @@
 /// <reference types="cypress" />
+import { loginPageLocators } from "../../support/elementLocators/LoginPageLocators";
+import "cypress-iframe";
 
-import { get } from 'cypress/types/lodash';
-import {loginPageLocators} from '../../support/elementLocators/LoginPageLocators';   
+// Define a custom Cypress command for solving Google reCAPTCHA
+Cypress.Commands.add("solveGoogleReCAPTCHA", () => {
+  cy.visit("/login");
 
-    describe('confirm recapture', () => 
-    {
+  cy.get("iframe")
+    .first()
+    .its("0.contentDocument.body")
+    .find(".recaptcha-checkbox")
+    .should("exist")
+    .click();
+});
 
-        before(() => {
-            cy.navigateToPage("/login");
-            cy.log('ignore google recaptcha');
-            
-        })
-
-        it.skip('reCapture', () => {
-          cy.intercept('POST', '**/*google.com/recaptcha/api2/**', { statusCode: 200, body: `["rresp","",null,null,null,""]` });
-          cy.elementIsEnabled(loginPageLocators.LoginSubmitButton());   
-})
-
-    })
+describe("confirm reCAPTCHA", () => {
+  it("should solve reCAPTCHA", () => {
+    // Use the custom command to solve reCAPTCHA
+    cy.solveGoogleReCAPTCHA();
+  });
+});

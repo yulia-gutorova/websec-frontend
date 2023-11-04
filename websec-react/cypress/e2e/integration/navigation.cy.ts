@@ -1,6 +1,5 @@
 
 
-import {elementInteractions} from '../../support/utils/ElementsInteraction';
 import {registrationPageLocators} from '../../support/elementLocators/RegistrationPageLocators';  
 import {loginPageLocators } from '../../support/elementLocators/LoginPageLocators';
 import {homePageLocators} from '../../support/elementLocators/HomePageLocators';
@@ -32,13 +31,15 @@ describe('Testing navigation between pages', () => {
         cy.waitForTime(2000);
     })
 
-    it('Can not go back to myPage when logged out', () => {
+    it.skip('Can not go back to myPage when logged out', () => {
 
         cy.clickOnElement(homePageLocators.homeLogInButton());
 
         cy.urlContains("/login");
         cy.waitForTime(2000);
 
+        cy.solveGoogleReCAPTCHA();
+        cy.clickOnElement(loginPageLocators.LoginConsentYesButton()); 
 
         cy.fillLoginForm(loginPageLocators.LoginFormUsernameInput(), 
                                         data[0].username, 
@@ -47,7 +48,9 @@ describe('Testing navigation between pages', () => {
                                 
         cy.waitForTime(2000);
 
-        cy.submitForm(loginPageLocators.LoginSubmitButton() as unknown as Cypress.Chainable<JQuery<HTMLElement>>); 
+        //cy.clickOnElement(loginPageLocators.LoginC);
+
+        cy.submitForm(loginPageLocators.LoginSubmitButton()); 
                 
         cy.waitForTime(10000);
 

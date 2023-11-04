@@ -38,45 +38,49 @@
 
 declare namespace Cypress {
     interface Chainable {
-        navigateToPage(pageName : string): Chainable<any>;
+        navigateToPage(pageName: string): Chainable<any>;
         urlContains(url: string): Chainable<any>;
         waitForTime(time: number): Chainable<any>;
 
-        elementIsVisible(element : Cypress.Chainable<JQuery<HTMLElement>> | Cypress.Chainable<JQuery<HTMLButtonElement>>): Chainable<any>;
-        elementIsExist(element : Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
-        elementIsNotExist(element : Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
-        elementIsNotVisible(element : Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
-        clickOnElement(element : Cypress.Chainable<JQuery<HTMLElement>>| Cypress.Chainable<JQuery<HTMLButtonElement>>): Chainable<any>;
-
-        typeTextInElement(element : Cypress.Chainable<JQuery<HTMLElement>>, text : string): Chainable<any>;
-        getCssPropertyFromElement(element : Cypress.Chainable<JQuery<HTMLElement>>, cssProperty : string): Chainable<any>;
-
-
         elementWithTextIsVisible(text : string): Chainable<any>;
-        elementIsEmty(element : Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
-        elementIsNotEmty(element : Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
+
+        elementIsVisible(element :      Cypress.Chainable<JQuery<HTMLElement>> | Cypress.Chainable<JQuery<HTMLButtonElement>> | Cypress.Chainable<JQuery<HTMLIFrameElement>>): Chainable<any>;
+
+        elementIsExist(element :        Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
+        elementIsNotExist(element :     Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
+        elementIsNotVisible(element :   Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
+        clickOnElement(element :        Cypress.Chainable<JQuery<HTMLElement>> | 
+                                        Cypress.Chainable<JQuery<HTMLButtonElement>>): Chainable<any>;
+        typeTextInElement(element :     Cypress.Chainable<JQuery<HTMLElement>>, text : string): Chainable<any>;
+        getCssPropertyFromElement(element  : Cypress.Chainable<JQuery<HTMLElement>>, cssProperty : string, value : string): Chainable<any>;
+       
+        elementIsEmty(element :         Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
+        elementIsNotEmty(element :      Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
         
-        fillLoginForm(inputUsername : Cypress.Chainable<JQuery<HTMLElement>>, 
-            username: string, 
-            inputPassword : Cypress.Chainable<JQuery<HTMLElement>>, 
-            password: string): Chainable<any>;
+        fillLoginForm(  inputUsername : Cypress.Chainable<JQuery<HTMLElement>>, 
+                        username:       string, 
+                        inputPassword : Cypress.Chainable<JQuery<HTMLElement>>, 
+                        password:       string): Chainable<any>;
 
         fillRegisterForm(inputUsername : Cypress.Chainable<JQuery<HTMLElement>>, 
-            username: string, 
-            inputPassword : Cypress.Chainable<JQuery<HTMLElement>>, 
-            password: string,
-            inputCheckbox : Cypress.Chainable<JQuery<HTMLElement>>,
-            checkbox : boolean): Chainable<any>;
+                        username:        string, 
+                        inputPassword :  Cypress.Chainable<JQuery<HTMLElement>>, 
+                        password:        string,
+                        inputCheckbox :  Cypress.Chainable<JQuery<HTMLElement>>,
+                        checkbox : boolean): Chainable<any>;
 
-        submitForm(button : Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
-        elementIsDisabled(button : Cypress.Chainable<JQuery<HTMLElement>>| Cypress.Chainable<JQuery<HTMLButtonElement>>): Chainable<any>;
-        elementIsEnabled(button : Cypress.Chainable<JQuery<HTMLElement>>| Cypress.Chainable<JQuery<HTMLButtonElement>>): Chainable<any>;
-        confirmCaptcha(): Chainable<any>;
+        submitForm(button :             Cypress.Chainable<JQuery<HTMLElement>>): Chainable<any>;
+        elementIsDisabled(button :      Cypress.Chainable<JQuery<HTMLElement>> | 
+                                        Cypress.Chainable<JQuery<HTMLButtonElement>>): Chainable<any>;
+        elementIsEnabled(button :       Cypress.Chainable<JQuery<HTMLElement>> | 
+                                        Cypress.Chainable<JQuery<HTMLButtonElement>>): Chainable<any>;
+        solveGoogleReCAPTCHA(): Chainable<any>;
 
     }
 } 
 
 // Common functions =========================================================================================
+
 Cypress.Commands.add('navigateToPage', (pageName : string) => {
     cy.visit(pageName);
 })
@@ -91,7 +95,8 @@ Cypress.Commands.add('waitForTime', (time: number) => {
 
 
 // Element interactions =========================================================================================
-Cypress.Commands.add('elementIsVisible', (element : Cypress.Chainable<JQuery<HTMLElement>> | Cypress.Chainable<JQuery<HTMLButtonElement>>) => {
+
+Cypress.Commands.add('elementIsVisible', (element : Cypress.Chainable<JQuery<HTMLElement>> | Cypress.Chainable<JQuery<HTMLButtonElement>> | Cypress.Chainable<JQuery<HTMLIFrameElement>>) => {
     element.should('be.visible');
 })
 
@@ -106,15 +111,18 @@ Cypress.Commands.add('elementIsNotExist', (element : Cypress.Chainable<JQuery<HT
     element.should('not.exist');
 })
 
-Cypress.Commands.add('elementIsDisabled', (element : Cypress.Chainable<JQuery<HTMLElement>>| Cypress.Chainable<JQuery<HTMLButtonElement>>) => {
+Cypress.Commands.add('elementIsDisabled', (element : Cypress.Chainable<JQuery<HTMLElement>> | 
+                                                     Cypress.Chainable<JQuery<HTMLButtonElement>>) => {
     element.should('be.disabled');
 })
 
-Cypress.Commands.add('elementIsEnabled', (element : Cypress.Chainable<JQuery<HTMLElement>>| Cypress.Chainable<JQuery<HTMLButtonElement>>) => {
+Cypress.Commands.add('elementIsEnabled', (element : Cypress.Chainable<JQuery<HTMLElement>> | 
+                                                    Cypress.Chainable<JQuery<HTMLButtonElement>>) => {
     element.should('be.enabled');
 })
 
-Cypress.Commands.add('clickOnElement', (element : Cypress.Chainable<JQuery<HTMLElement>>| Cypress.Chainable<JQuery<HTMLButtonElement>> ) => {
+Cypress.Commands.add('clickOnElement', (element : Cypress.Chainable<JQuery<HTMLElement>> | 
+                                                  Cypress.Chainable<JQuery<HTMLButtonElement>> ) => {
     element.click();
 })
 
@@ -172,16 +180,24 @@ Cypress.Commands.add('submitForm', (button : Cypress.Chainable<JQuery<HTMLElemen
     button.click();
 })
 
-Cypress.Commands.add('confirmCaptcha', () => {
-        cy.waitForTime(5000);
-        cy.get('iframe').then(($iframe) => {cy.wrap($iframe.contents()).find('body').then(($body) => {cy.wrap($body).find('#recaptcha-anchor')})})
+
+Cypress.Commands.add("solveGoogleReCAPTCHA", () => {
+    cy.visit("/login");
+  
+    cy.get("iframe")
+      .first()
+      .its("0.contentDocument.body")
+      .find(".recaptcha-checkbox")
+      .should("exist")
+      .click();
+  });
+
+
+  Cypress.Commands.add('getCssPropertyFromElement', (element : Cypress.Chainable<JQuery<HTMLElement>>, cssProperty : string, value : string) => {
+    element.should('have.css', cssProperty, value)
 })
 
-
-/* checkElement (element : Cypress.Chainable<JQuery<HTMLElement>>) {
-    return element.check();
-}
-
+/*
 uncheckElement (element : Cypress.Chainable<JQuery<HTMLElement>>) {
     return element.uncheck();
 }   

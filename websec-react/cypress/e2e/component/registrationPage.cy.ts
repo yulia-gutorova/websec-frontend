@@ -31,9 +31,8 @@ describe('Visit registration page', () => {
 
         beforeEach(() => 
         {
-            cy.navigateToPage("/");
-            cy.clickOnElement(homePageLocators.homeLogInButton());
-            cy.clickOnElement(loginPageLocators.LoginLinkToRegister());
+            cy.navigateToPage("/registration");
+
         })
 
         it.skip('visible elements and not visible elements', () => 
@@ -71,7 +70,7 @@ describe('Visit registration page', () => {
             cy.waitForTime(2000);
             cy.elementIsVisible(registrationPageLocators.RegisterConsentToCookieButton());
             //cy.clickOnElement(loginPageLocators.LoginConsentToCookieButton());
-            cy.waitForTime(5000);
+            cy.waitForTime(2000);
             cy.elementIsVisible(registrationPageLocators.RegisterConsentBunner());
             cy.elementIsVisible(registrationPageLocators.RegisterConsentMoreButton());
             cy.elementIsVisible(registrationPageLocators.RegisterConsentYesButton());              
@@ -85,6 +84,15 @@ describe('Visit registration page', () => {
 
         })
 
+        it('submit button is enabled', () => 
+        {
+            cy.waitForTime(1000);
+            cy.clickOnElement(registrationPageLocators.RegisterConsentYesButton());
+            cy.waitForTime(1000);
+            cy.elementIsEnabled(registrationPageLocators.RegisterSubmitButton());
+
+        })
+
     })
 
         //================================================================================
@@ -93,22 +101,18 @@ describe('Visit registration page', () => {
 
             before(() => 
             {
-                cy.navigateToPage("/");
-                cy.clickOnElement(homePageLocators.homeLogInButton());
-                cy.clickOnElement(loginPageLocators.LoginLinkToRegister());
+                cy.navigateToPage("/registration");
             })
-            it.skip('error messages are visivle when submitting empty form', () => 
+            it('error messages are visivle when submitting empty form', () => 
             {
-
+                cy.clickOnElement(registrationPageLocators.RegisterConsentYesButton());
                 cy.waitForTime(1000);
-                cy.submitForm(registrationPageLocators.RegisterSubmitButton());
+                cy.clickOnElement(registrationPageLocators.RegisterSubmitButton());
                 cy.waitForTime(1000);
-
                 cy.elementIsVisible(registrationPageLocators.RegisterErrorMessageUsername());
                 cy.elementIsVisible(registrationPageLocators.RegisterErrorMessagePassword());
                 cy.elementIsVisible(registrationPageLocators.RegisterErrorMessageCheckbox());
-            
-
+                cy.getCssPropertyFromElement(registrationPageLocators.RegisterErrorMessageUsername(), 'color', 'rgb(255, 69, 0)');
             })
 
 

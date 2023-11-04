@@ -23,7 +23,7 @@ describe('Fill in form with existing user credentials', () => {
                                         registrationPageLocators.RegisterFormCheckboxInput(),
                                         true);
         cy.waitForTime(2000);
-
+        cy.clickOnElement(registrationPageLocators.RegisterConsentYesButton());
         cy.submitForm(registrationPageLocators.RegisterSubmitButton()); 
         cy.waitForTime(2000);
        

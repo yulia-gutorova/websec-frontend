@@ -58,9 +58,15 @@ class LoginPageLocators {
         return cy.get('button').contains("Yes");
     }
 
-    LoginConsentNoButton() {     
-        return cy.get('button').contains("No");
+    LoginConsentNoButton() { 
+        return cy.get('button').contains("No");    
+        
     }
+
+    LoginReCaptcha() {     
+        return cy.get("iframe");
+    }
+
     
     
     

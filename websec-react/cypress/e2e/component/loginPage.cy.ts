@@ -3,17 +3,21 @@
 import { homePageLocators } from '../../support/elementLocators/HomePageLocators';
 import {loginPageLocators} from '../../support/elementLocators/LoginPageLocators';   
 
-describe('Visit login page', () => {
+describe('Visit login page', () => 
+{
 
     describe('Page elements are visible', () => 
     {
 
-        beforeEach(() => {
-            cy.navigateToPage("/");  
-            cy.clickOnElement(homePageLocators.homeLogInButton());
+        beforeEach(() => 
+        {
+            //cy.navigateToPage("/");  
+            //cy.clickOnElement(homePageLocators.homeLogInButton());
+            cy.navigateToPage("/login");
         })
 
-        it('visible and not visible elements', () => {
+        it('visible and not visible elements', () => 
+        {
 
             cy.elementIsVisible(loginPageLocators.LoginForm()); 
             cy.elementIsVisible(loginPageLocators.LoginForm()); 
@@ -54,7 +58,8 @@ describe('Visit login page', () => {
             cy.elementIsDisabled(loginPageLocators.LoginSubmitButton());
         })  
 
-        it('Consent bunner elements are visible', () => {
+        it('Consent bunner elements are visible', () => 
+        {
             cy.waitForTime(2000);
             cy.elementWithTextIsVisible(loginPageLocators.LoginConsentToCookieText());
             cy.waitForTime(2000);
@@ -64,43 +69,59 @@ describe('Visit login page', () => {
             cy.elementIsVisible(loginPageLocators.LoginConsentBunner());
             cy.elementIsVisible(loginPageLocators.LoginConsentMoreButton());
             cy.elementIsVisible(loginPageLocators.LoginConsentYesButton());
-            cy.clickOnElement(loginPageLocators.LoginConsentNoButton());    
+               
+        })
+
+        it('reCaptca is visible', () => 
+        {
+            cy.waitForTime(5000);
+            cy.elementIsVisible(loginPageLocators.LoginReCaptcha());         
+        })
+
+        it.skip('Submit button is enabled', () => 
+        {
+            cy.waitForTime(2000);
+            cy.solveGoogleReCAPTCHA();
+            cy.clickOnElement(loginPageLocators.LoginConsentYesButton()); 
+            cy.waitForTime(2000);
+            cy.elementIsEnabled(loginPageLocators.LoginSubmitButton());
+
+        });
+
+    })
+
+    
+        //================================================================================
+    describe('Check error messages', () => 
+    {
+
+        before(() => 
+        {
+            cy.navigateToPage("/login");
+        })
+
+        it.skip('error messages are visible when submitting empty form', () => 
+        {
+
+            cy.waitForTime(2000);
+
+            cy.submitForm(loginPageLocators.LoginSubmitButton());
+
+            cy.waitForTime(2000);
+
+            cy.elementIsExist(loginPageLocators.LoginPasswordErrorMessageWrapper());
+            cy.elementIsExist(loginPageLocators.LoginUsernameErrorMessageWrapper());
+
+            cy.elementIsNotEmty(loginPageLocators.LoginPasswordErrorMessageWrapper());
+            cy.elementIsNotEmty(loginPageLocators.LoginUsernameErrorMessageWrapper());
+            
+            //elementInteractions.getElementByText(loginPageLocators.LoginErrorMessagePasswordText()); 
+            //elementInteractions.getElementByText(loginPageLocators.LoginErrorMessageUsernameText());
+            //cy.contains(loginPageLocators.LoginErrorMessagePasswordText()).should('be.visible');
+            
+            cy.elementWithTextIsVisible(loginPageLocators.LoginErrorMessagePasswordText());
+            cy.elementWithTextIsVisible(loginPageLocators.LoginErrorMessageUsernameText());
         })
 
     })
-    
-
-        //================================================================================
-        describe('Check error messages', () => 
-        {
-
-            before(() => 
-            {
-                cy.navigateToPage("/login");
-            })
-
-            it.skip('error messages are visible when submitting empty form', () => 
-            {
-
-                cy.waitForTime(2000);
-
-                cy.submitForm(loginPageLocators.LoginSubmitButton());
-
-                cy.waitForTime(2000);
-
-                cy.elementIsExist(loginPageLocators.LoginPasswordErrorMessageWrapper());
-                cy.elementIsExist(loginPageLocators.LoginUsernameErrorMessageWrapper());
-    
-                cy.elementIsNotEmty(loginPageLocators.LoginPasswordErrorMessageWrapper());
-                cy.elementIsNotEmty(loginPageLocators.LoginUsernameErrorMessageWrapper());
-                
-                //elementInteractions.getElementByText(loginPageLocators.LoginErrorMessagePasswordText()); 
-                //elementInteractions.getElementByText(loginPageLocators.LoginErrorMessageUsernameText());
-                //cy.contains(loginPageLocators.LoginErrorMessagePasswordText()).should('be.visible');
-                
-                cy.elementWithTextIsVisible(loginPageLocators.LoginErrorMessagePasswordText());
-                cy.elementWithTextIsVisible(loginPageLocators.LoginErrorMessageUsernameText());
-            })
-
-        })
 })

@@ -15,13 +15,17 @@ import  data  from "../../fixtures/example.json";
 
     it('Login with invalid credentials', () => {
 
+        cy.waitForTime(2000);
         cy.fillLoginForm(loginPageLocators.LoginFormUsernameInput(), 
                                         data[1].username, 
                                         loginPageLocators.LoginFormPasswordInput(), 
                                         data[1].password); 
                                 
         cy.waitForTime(2000);
-
+        cy.solveGoogleReCAPTCHA();
+        cy.waitForTime(2000);
+        cy.clickOnElement(loginPageLocators.LoginConsentYesButton());
+        cy.waitForTime(2000);
         cy.submitForm(loginPageLocators.LoginSubmitButton()); 
 
         cy.waitForTime(10000);
@@ -38,7 +42,10 @@ import  data  from "../../fixtures/example.json";
                                         data[0].password); 
                                 
         cy.waitForTime(2000);
-
+        cy.solveGoogleReCAPTCHA();
+        cy.waitForTime(2000);
+        cy.clickOnElement(loginPageLocators.LoginConsentYesButton());
+        cy.waitForTime(2000);
         cy.submitForm(loginPageLocators.LoginSubmitButton()); 
         
         cy.waitForTime(10000);

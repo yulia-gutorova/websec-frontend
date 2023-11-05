@@ -8,7 +8,7 @@ import data from '../../fixtures/example.json';
 
 describe('Fill in form with existing user credentials', () => {
 
-    before(() => {
+    beforeEach(() => {
         //const url = Cypress.env('TEST_BASE_URL')+'/registration';
         //commonFunctions.navigateToPage(url);
         cy.navigateToPage("/registration");
@@ -34,6 +34,8 @@ describe('Fill in form with existing user credentials', () => {
 
         cy.waitForTime(2000);
     })
+
+
   
 
 })

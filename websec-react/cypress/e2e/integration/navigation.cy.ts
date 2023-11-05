@@ -1,4 +1,4 @@
-
+/// <reference types="cypress" />
 
 import {registrationPageLocators} from '../../support/elementLocators/RegistrationPageLocators';  
 import {loginPageLocators } from '../../support/elementLocators/LoginPageLocators';

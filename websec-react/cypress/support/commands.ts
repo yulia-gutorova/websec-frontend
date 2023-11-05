@@ -1,3 +1,4 @@
+
 /// <reference types="cypress" />
 // ***********************************************
 // This example commands.ts shows you how to
@@ -182,7 +183,7 @@ Cypress.Commands.add('submitForm', (button : Cypress.Chainable<JQuery<HTMLElemen
 
 
 Cypress.Commands.add("solveGoogleReCAPTCHA", () => {
-    cy.visit("/login");
+    //cy.visit("/login");
   
     cy.get("iframe")
       .first()

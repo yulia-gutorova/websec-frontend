@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { loginPageLocators } from "../../support/elementLocators/LoginPageLocators";
+
 import "cypress-iframe";
 
 // Define a custom Cypress command for solving Google reCAPTCHA
@@ -17,6 +17,7 @@ import "cypress-iframe";
 describe("confirm reCAPTCHA", () => {
 
   it("should solve reCAPTCHA", () => {
+    cy.visit("/login");
     cy.solveGoogleReCAPTCHA();
   });
 

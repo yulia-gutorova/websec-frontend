@@ -78,7 +78,7 @@ describe('Visit login page', () =>
             cy.elementIsVisible(loginPageLocators.LoginReCaptcha());         
         })
 
-        it.skip('Submit button is enabled', () => 
+        it('Submit button is enabled', () => 
         {
             cy.waitForTime(2000);
             cy.solveGoogleReCAPTCHA();
@@ -100,10 +100,12 @@ describe('Visit login page', () =>
             cy.navigateToPage("/login");
         })
 
-        it.skip('error messages are visible when submitting empty form', () => 
+        it('error messages are visible when submitting empty form', () => 
         {
 
             cy.waitForTime(2000);
+            cy.solveGoogleReCAPTCHA();
+            cy.clickOnElement(loginPageLocators.LoginConsentYesButton());
 
             cy.submitForm(loginPageLocators.LoginSubmitButton());
 

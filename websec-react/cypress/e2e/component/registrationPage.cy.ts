@@ -13,9 +13,7 @@ describe('Visit registration page', () => {
     {
         before(() => 
         {
-            cy.navigateToPage("/");
-            cy.clickOnElement(homePageLocators.homeLogInButton());
-            cy.clickOnElement(loginPageLocators.LoginLinkToRegister());
+            cy.navigateToPage("/registration");
         })
 
         it('url is right', () => 
@@ -65,11 +63,11 @@ describe('Visit registration page', () => {
         })
 
         it('Consent is visible', () => {
+
             cy.waitForTime(2000);
             cy.elementWithTextIsVisible(registrationPageLocators.RegisterConsentToCookieText());
             cy.waitForTime(2000);
             cy.elementIsVisible(registrationPageLocators.RegisterConsentToCookieButton());
-            //cy.clickOnElement(loginPageLocators.LoginConsentToCookieButton());
             cy.waitForTime(2000);
             cy.elementIsVisible(registrationPageLocators.RegisterConsentBunner());
             cy.elementIsVisible(registrationPageLocators.RegisterConsentMoreButton());
@@ -95,29 +93,29 @@ describe('Visit registration page', () => {
 
     })
 
-        //================================================================================
-        describe('Check error messages', () => 
+    //================================================================================
+    describe('Check error messages', () => 
+    {
+
+        before(() => 
         {
-
-            before(() => 
-            {
-                cy.navigateToPage("/registration");
-            })
-            it('error messages are visivle when submitting empty form', () => 
-            {
-                cy.clickOnElement(registrationPageLocators.RegisterConsentYesButton());
-                cy.waitForTime(1000);
-                cy.clickOnElement(registrationPageLocators.RegisterSubmitButton());
-                cy.waitForTime(1000);
-                cy.elementIsVisible(registrationPageLocators.RegisterErrorMessageUsername());
-                cy.elementIsVisible(registrationPageLocators.RegisterErrorMessagePassword());
-                cy.elementIsVisible(registrationPageLocators.RegisterErrorMessageCheckbox());
-                cy.getCssPropertyFromElement(registrationPageLocators.RegisterErrorMessageUsername(), 'color', 'rgb(255, 69, 0)');
-            })
-
-
+            cy.navigateToPage("/registration");
         })
-        //====
+        it('error messages are visivle when submitting empty form', () => 
+        {
+            cy.clickOnElement(registrationPageLocators.RegisterConsentYesButton());
+            cy.waitForTime(1000);
+            cy.clickOnElement(registrationPageLocators.RegisterSubmitButton());
+            cy.waitForTime(1000);
+            cy.elementIsVisible(registrationPageLocators.RegisterErrorMessageUsername());
+            cy.elementIsVisible(registrationPageLocators.RegisterErrorMessagePassword());
+            cy.elementIsVisible(registrationPageLocators.RegisterErrorMessageCheckbox());
+            cy.getCssPropertyFromElement(registrationPageLocators.RegisterErrorMessageUsername(), 'color', 'rgb(255, 69, 0)');
+        })
+
+
+    })
+    //====
 
 
 })    

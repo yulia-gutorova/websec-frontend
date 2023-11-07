@@ -17,7 +17,7 @@
 
 .loginArea{
     width: 430px;
-    height: 600px;
+    height: 620px;
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
@@ -45,7 +45,7 @@
 }
 
 .loginFormWrapper {
-    height: 580px;
+    height: 600px;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -81,7 +81,7 @@
 
 .loginLabel {
     display: block;
-    margin-top: 10px;
+    margin-top: 5px;
     font-size: 16px;
     font-weight: 500;
 
@@ -122,8 +122,8 @@
     pointer-events: none;
     }
 
-.hr {
-    margin: 10px 0 20px 0;
+.loginHr {
+    margin: 0px 0 10px 0;
     border: 1px solid green
 }
 

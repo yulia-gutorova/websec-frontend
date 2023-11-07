@@ -185,7 +185,7 @@ export const RegistrationView = () => {
             </div>
 
 
-            <hr className={classes.hr} />
+            <hr className={classes.registerHr} />
 
             <div>
               <span>Already have an account?</span>

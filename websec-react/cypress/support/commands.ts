@@ -39,9 +39,9 @@
 
 declare namespace Cypress {
     interface Chainable {
-        navigateToPage(pageName: string): Chainable<any>;
-        urlContains(url: string): Chainable<any>;
-        waitForTime(time: number): Chainable<any>;
+        navigateToPage(pageName :       string): Chainable<any>;
+        urlContains(url :               string) : Chainable<any>;
+        waitForTime(time :              number) : Chainable<any>;
 
         elementWithTextIsVisible(text : string): Chainable<any>;
 
@@ -75,7 +75,7 @@ declare namespace Cypress {
                                         Cypress.Chainable<JQuery<HTMLButtonElement>>): Chainable<any>;
         elementIsEnabled(button :       Cypress.Chainable<JQuery<HTMLElement>> | 
                                         Cypress.Chainable<JQuery<HTMLButtonElement>>): Chainable<any>;
-        solveGoogleReCAPTCHA(): Chainable<any>;
+        solveGoogleReCAPTCHA():         Chainable<any>;
 
     }
 } 
@@ -153,9 +153,7 @@ Cypress.Commands.add('fillLoginForm', (inputUsername : Cypress.Chainable<JQuery<
     password: string) => {
 
         inputUsername.type(username);
-        cy.waitForTime(2000);
         inputPassword.type(password);
-        cy.waitForTime(2000);
 })
 
 Cypress.Commands.add('fillRegisterForm', (inputUsername : Cypress.Chainable<JQuery<HTMLElement>>, 
@@ -166,10 +164,8 @@ Cypress.Commands.add('fillRegisterForm', (inputUsername : Cypress.Chainable<JQue
     checkbox : boolean) => {
 
         inputUsername.type(username);
-        cy.waitForTime(2000);
         inputPassword.type(password);
-        cy.waitForTime(2000);
-    
+  
         if (checkbox) {
         inputCheckbox.check();
         cy.waitForTime(2000);

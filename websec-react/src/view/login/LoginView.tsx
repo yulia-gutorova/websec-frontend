@@ -200,7 +200,7 @@ export const LoginView = () => {
 
             </div>
 
-            <hr className={classes.hr} />
+            <hr className={classes.loginHr} />
 
             <div>
               <span>Don't have an account?</span>

@@ -64,11 +64,8 @@ describe('Visit registration page', () => {
 
         it('Consent is visible', () => {
 
-            cy.waitForTime(2000);
             cy.elementWithTextIsVisible(registrationPageLocators.RegisterConsentToCookieText());
-            cy.waitForTime(2000);
             cy.elementIsVisible(registrationPageLocators.RegisterConsentToCookieButton());
-            cy.waitForTime(2000);
             cy.elementIsVisible(registrationPageLocators.RegisterConsentBunner());
             cy.elementIsVisible(registrationPageLocators.RegisterConsentMoreButton());
             cy.elementIsVisible(registrationPageLocators.RegisterConsentYesButton());              
@@ -76,17 +73,12 @@ describe('Visit registration page', () => {
 
         it('submit button is disabled', () => 
         {
-            cy.waitForTime(1000);
             cy.elementIsDisabled(registrationPageLocators.RegisterSubmitButton());
-            cy.waitForTime(1000);
-
         })
 
         it('submit button is enabled', () => 
         {
-            cy.waitForTime(1000);
             cy.clickOnElement(registrationPageLocators.RegisterConsentYesButton());
-            cy.waitForTime(1000);
             cy.elementIsEnabled(registrationPageLocators.RegisterSubmitButton());
 
         })
@@ -104,15 +96,12 @@ describe('Visit registration page', () => {
         it('error messages are visivle when submitting empty form', () => 
         {
             cy.clickOnElement(registrationPageLocators.RegisterConsentYesButton());
-            cy.waitForTime(1000);
             cy.clickOnElement(registrationPageLocators.RegisterSubmitButton());
-            cy.waitForTime(1000);
             cy.elementIsVisible(registrationPageLocators.RegisterErrorMessageUsername());
             cy.elementIsVisible(registrationPageLocators.RegisterErrorMessagePassword());
             cy.elementIsVisible(registrationPageLocators.RegisterErrorMessageCheckbox());
             cy.getCssPropertyFromElement(registrationPageLocators.RegisterErrorMessageUsername(), 'color', 'rgb(255, 69, 0)');
         })
-
 
     })
     //====

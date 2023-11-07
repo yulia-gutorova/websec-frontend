@@ -22,7 +22,8 @@ describe('API requests registration page', () => {
                                         data[0].password, 
                                         registrationPageLocators.RegisterFormCheckboxInput(),
                                         true);
-        cy.waitForTime(2000);
+        //cy.clickOnElement(registrationPageLocators.RegisterConsentToCookieButton()); 
+        cy.waitForTime(1000);                               
         cy.clickOnElement(registrationPageLocators.RegisterConsentYesButton());
         cy.submitForm(registrationPageLocators.RegisterSubmitButton());  
            

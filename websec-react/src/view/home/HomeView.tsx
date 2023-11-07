@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 
 export const HomeView = () => {
 
+  //------------------------------------------------
   function focusInput() {
     const textField = document.getElementById("goToLoginPageButton");
 
@@ -16,8 +17,7 @@ export const HomeView = () => {
     }, 3000);
   }
 
-
-
+  //================================================
   return (
     <div className={classes.body}>
          <Helmet>

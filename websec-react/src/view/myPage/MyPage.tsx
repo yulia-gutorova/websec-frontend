@@ -12,7 +12,8 @@ export const MyPage = () => {
   window.onpopstate = function () {
     window.history.pushState( null, window.location.href);
   };
- 
+
+//------------------------------------------------
 const handleLogout  = async () => {
   try {
     
@@ -33,35 +34,36 @@ const handleLogout  = async () => {
     console.error(error)
   }
 }
-
-  const checkIfAuthed = async () => {
-    try {
-      const resp = await fetch(import.meta.env.VITE_BASE_URL + "/check-session", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
-      
-      if(resp.status === 200) {
-        const data = await resp.json()
-        const username = data.user.username;
-        navigate(`/mypage/${username}`)
-      }
-
-
-      if (resp.status === 401) {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
-        navigate('/login')
-      }
-    } catch (error) {
-      navigate('/login')
-      console.error(error)
+//------------------------------------------------
+const checkIfAuthed = async () => {
+  try {
+    const resp = await fetch(import.meta.env.VITE_BASE_URL + "/check-session", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    
+    if(resp.status === 200) {
+      const data = await resp.json()
+      const username = data.user.username;
+      navigate(`/mypage/${username}`)
     }
-  }
 
+
+    if (resp.status === 401) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+      navigate('/login')
+    }
+  } catch (error) {
+    navigate('/login')
+    console.error(error)
+  }
+}
+
+  //------------------------------------------------
   useEffect(() => {
     checkIfAuthed()
     requestNewJWTCookie()
@@ -69,7 +71,7 @@ const handleLogout  = async () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-
+  //------------------------------------------------
   const requestNewJWTCookie = async () => {
    try {
      const resp = await fetch(import.meta.env.VITE_BASE_URL + "/token", {
@@ -86,14 +88,14 @@ const handleLogout  = async () => {
    }
 }
 
+//------------------------------------------------
 const TOKEN_REFRESH_INTERVAL = 2 * 50 * 1000;
 
 const twoMinuteTokenRefresh =  () => {
   setInterval(refreshJWTCookie, TOKEN_REFRESH_INTERVAL)
 }
 
-
-
+//------------------------------------------------
 const refreshJWTCookie = async () => {
   try {
     const resp = await fetch(import.meta.env.VITE_BASE_URL + "/refresh-token", {
@@ -110,32 +112,32 @@ const refreshJWTCookie = async () => {
   }
 }
 
+//------------------------------------------------
+const handleFetchData = async () => {
+  try {
+    const resp = await fetch(import.meta.env.VITE_BACKEND_URL + '/decode-token', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
 
-  
-  const handleFetchData = async () => {
-    try {
-      const resp = await fetch(import.meta.env.VITE_BACKEND_URL + '/decode-token', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-      });
-  
-      if (resp.status === 200) {
-        const data = await resp.json();
-        console.log(data);
-      } else {
-        console.error('Request failed:', resp.status);
-        const errorData = await resp.json(); 
-        console.error('Error Message:', errorData.message);
-      }
-    } catch (error) {
-  
-      console.log(error)
+    if (resp.status === 200) {
+      const data = await resp.json();
+      console.log(data);
+    } else {
+      console.error('Request failed:', resp.status);
+      const errorData = await resp.json(); 
+      console.error('Error Message:', errorData.message);
     }
-  };
+  } catch (error) {
 
+    console.log(error)
+  }
+};
+
+  //================================================
   return (
     <div className={classes.container}>
       <Helmet>

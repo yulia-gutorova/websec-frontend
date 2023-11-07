@@ -23,9 +23,7 @@ describe('API requests registration page', () => {
 
         cy.waitForTime(5000);
         cy.solveGoogleReCAPTCHA();
-        cy.waitForTime(2000);
         cy.clickOnElement(loginPageLocators.LoginConsentYesButton());
-        cy.waitForTime(2000);
         cy.submitForm(loginPageLocators.LoginSubmitButton());   
 
         cy.wait('@login');
@@ -47,9 +45,7 @@ describe('API requests registration page', () => {
 
         cy.waitForTime(5000);
         cy.solveGoogleReCAPTCHA();
-        cy.waitForTime(2000);
         cy.clickOnElement(loginPageLocators.LoginConsentYesButton());
-        cy.waitForTime(2000);
         cy.submitForm(loginPageLocators.LoginSubmitButton());   
 
         cy.wait('@login');

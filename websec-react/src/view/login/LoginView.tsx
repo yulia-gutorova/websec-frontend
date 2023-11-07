@@ -34,6 +34,8 @@ export const LoginView = () => {
 
   const recaptchaReference = useRef<ReCAPTCHA>(null);
 
+
+  //------------------------------------------------
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const exportCookiesFromLocalStorage = () => {
     try {
@@ -47,10 +49,12 @@ export const LoginView = () => {
     }
   };
 
+  //------------------------------------------------
   useEffect(() => {
     exportCookiesFromLocalStorage();
   }, [exportCookiesFromLocalStorage]);
 
+  //------------------------------------------------
   const onChange = async () => {
 
     if (recaptchaReference.current !== null) {
@@ -70,6 +74,7 @@ export const LoginView = () => {
     }
   };
 
+  //------------------------------------------------
   const onSubmit: SubmitHandler<IFormLoginInput> = async (data) => {
     const user = {
       username: data.username,

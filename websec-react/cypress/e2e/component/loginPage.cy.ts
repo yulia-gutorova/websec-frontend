@@ -34,7 +34,7 @@ describe('Visit login page', () =>
             cy.elementIsEmty(loginPageLocators.LoginPasswordErrorMessageWrapper());
             cy.elementIsEmty(loginPageLocators.LoginUsernameErrorMessageWrapper());
 
-            cy.waitForTime(2000);
+            cy.waitForTime(500);
             cy.elementWithTextIsVisible(loginPageLocators.LoginConsentToCookieText());
 
 
@@ -49,9 +49,7 @@ describe('Visit login page', () =>
         {
             cy.waitForTime(2000);
             cy.elementWithTextIsVisible(loginPageLocators.LoginConsentToCookieText());
-            cy.waitForTime(2000);
             cy.elementIsVisible(loginPageLocators.LoginConsentToCookieButton());
-            cy.waitForTime(2000);
             cy.elementIsVisible(loginPageLocators.LoginConsentBunner());
             cy.elementIsVisible(loginPageLocators.LoginConsentMoreButton());
             cy.elementIsVisible(loginPageLocators.LoginConsentYesButton());
@@ -60,16 +58,16 @@ describe('Visit login page', () =>
 
         it('reCaptca is visible', () => 
         {
-            cy.waitForTime(5000);
+            cy.waitForTime(6000);
             cy.elementIsVisible(loginPageLocators.LoginReCaptcha());         
         })
 
         it('Submit button is enabled', () => 
         {
-            cy.waitForTime(2000);
+            cy.waitForTime(5000);
             cy.solveGoogleReCAPTCHA();
+            cy.waitForTime(500);
             cy.clickOnElement(loginPageLocators.LoginConsentYesButton()); 
-            cy.waitForTime(2000);
             cy.elementIsEnabled(loginPageLocators.LoginSubmitButton());
 
         });
@@ -91,11 +89,12 @@ describe('Visit login page', () =>
 
             cy.waitForTime(5000);
             cy.solveGoogleReCAPTCHA();
+            cy.waitForTime(500);
             cy.clickOnElement(loginPageLocators.LoginConsentYesButton());
 
             cy.submitForm(loginPageLocators.LoginSubmitButton());
 
-            cy.waitForTime(2000);
+            cy.waitForTime(500);
 
             cy.elementIsExist(loginPageLocators.LoginPasswordErrorMessageWrapper());
             cy.elementIsExist(loginPageLocators.LoginUsernameErrorMessageWrapper());

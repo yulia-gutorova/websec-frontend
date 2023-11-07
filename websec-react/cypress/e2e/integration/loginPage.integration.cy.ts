@@ -8,27 +8,22 @@ import  data  from "../../fixtures/example.json";
  describe('Fill in form with existing user credentials', () => {
 
     beforeEach(() => {
-        //const url = Cypress.env('TEST_BASE_URL')+'/registration';
-        //commonFunctions.navigateToPage(url);
         cy.navigateToPage("/login");
     })
 
     it('Login with invalid credentials', () => {
+        cy.waitForTime(1000);   
 
-        cy.waitForTime(2000);
         cy.fillLoginForm(loginPageLocators.LoginFormUsernameInput(), 
                                         data[1].username, 
                                         loginPageLocators.LoginFormPasswordInput(), 
                                         data[1].password); 
                                 
-        cy.waitForTime(2000);
+        cy.waitForTime(5000);
         cy.solveGoogleReCAPTCHA();
-        cy.waitForTime(2000);
         cy.clickOnElement(loginPageLocators.LoginConsentYesButton());
-        cy.waitForTime(2000);
         cy.submitForm(loginPageLocators.LoginSubmitButton()); 
-
-        cy.waitForTime(10000);
+        cy.waitForTime(5000);
         cy.elementWithTextIsVisible(loginPageLocators.LoginErrorMessageUsernameOrPasswordDoNotMatch());
         
          
@@ -41,15 +36,11 @@ import  data  from "../../fixtures/example.json";
                                         loginPageLocators.LoginFormPasswordInput(), 
                                         data[0].password); 
                                 
-        cy.waitForTime(2000);
+        cy.waitForTime(5000);
         cy.solveGoogleReCAPTCHA();
-        cy.waitForTime(2000);
         cy.clickOnElement(loginPageLocators.LoginConsentYesButton());
-        cy.waitForTime(2000);
         cy.submitForm(loginPageLocators.LoginSubmitButton()); 
-        
-        cy.waitForTime(10000);
-
+        cy.waitForTime(1000);
         cy.urlContains(`/${data[0].username}`);   
     })
 

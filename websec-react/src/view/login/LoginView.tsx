@@ -23,7 +23,7 @@ export const LoginView = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [cookieConsent, setCookieConsent] = useState(false);
   const [recaptchaSuccessful, setRecaptchaSuccessful] = useState(false)
-
+  const [captchaLoading, setCaptchaLoading] = useState(false)
 
   const navigate = useNavigate();
   const {
@@ -56,22 +56,28 @@ export const LoginView = () => {
 
   //------------------------------------------------
   const onChange = async () => {
-
-    if (recaptchaReference.current !== null) {
-      const recaptchaValue = await recaptchaReference.current.getValue();
-      /*     console.log("Rec value ", recaptchaValue);  */
-
-      const res = await fetch(import.meta.env.VITE_BASE_URL + '/verify', {
-        method: "POST",
-        body: JSON.stringify({ recaptchaValue }),
-        headers: {
-          "Content-Type": "application/json"
+    try {
+      setCaptchaLoading(true)
+      if (recaptchaReference.current !== null) {
+        const recaptchaValue = await recaptchaReference.current.getValue();
+        /*     console.log("Rec value ", recaptchaValue);  */
+  
+        const res = await fetch(import.meta.env.VITE_BASE_URL + '/verify', {
+          method: "POST",
+          body: JSON.stringify({ recaptchaValue }),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        if (res.status === 200) {
+          setRecaptchaSuccessful(true)
         }
-      })
-      if (res.status === 200) {
-        setRecaptchaSuccessful(true)
       }
-    }
+} catch (error) {
+  console.error(error)
+} finally {
+  setCaptchaLoading(false)
+}
   };
 
   //------------------------------------------------
@@ -202,6 +208,7 @@ export const LoginView = () => {
                   onExpired={() => setRecaptchaSuccessful(false)}
                 />
               </div>
+                {captchaLoading && <p>Awaiting server response...</p>}
 
             </div>
 

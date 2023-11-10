@@ -38,6 +38,6 @@ react-hook-form
 ```
 
 ### Tekniker:
-* [Cypress](hhttps://www.cypress.io) - Testverktyg för frontend - kan utföra tester såsom komponent, integration och API-tester.
+* [Cypress](https://www.cypress.io) - Testverktyg för frontend - kan utföra tester såsom komponent, integration och API-tester.
 * [Recaptcha](https://www.npmjs.com/package/react-google-recaptcha-v2) - Autentisering med hjälp av recaptcha, säkrar inloggning emot bot-attacker.
 * [React-hook-consent](https://www.npmjs.com/package/react-hook-consent) - Verktyg för att implementera samtycke till kakor och möjliggör lagring hos användaren.

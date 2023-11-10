@@ -1,7 +1,7 @@
 
 ## **Kurs**: Webbsäkerhet analys och implementation
 
-<img src="./websec-react/src/assets/sequence_diagram.png">
+<img src="./websec-react/src/assets/sequence_diagram(1).png">
 
 
 ### Grupp : 

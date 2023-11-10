@@ -1,11 +1,23 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import classes from "./styles/MyPage.module.css";
 import { Helmet } from "react-helmet-async";
 
 
+interface UserData {
+  message: string;
+  username: string;
+}
+
+interface ErrorData {
+  error: string;
+}
+
+
 export const MyPage = () => {
+  const [userMessageFromBackend, setUserMessageFromBackend] = useState<UserData | ErrorData | null>(null);
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
   const { name } = useParams()
   window.history.pushState(null, window.location.href);
@@ -114,6 +126,7 @@ const refreshJWTCookie = async () => {
 
 //------------------------------------------------
 const handleFetchData = async () => {
+  setIsLoading(true)
   try {
     const resp = await fetch(import.meta.env.VITE_BACKEND_URL + '/decode-token', {
       method: 'GET',
@@ -126,14 +139,18 @@ const handleFetchData = async () => {
     if (resp.status === 200) {
       const data = await resp.json();
       console.log(data);
+      setUserMessageFromBackend(data);
     } else {
       console.error('Request failed:', resp.status);
       const errorData = await resp.json(); 
       console.error('Error Message:', errorData.message);
+      setUserMessageFromBackend(errorData)
     }
   } catch (error) {
-
+    setUserMessageFromBackend({ error: "Internal server error - check back at a later time" });
     console.log(error)
+  } finally {
+    setIsLoading(false)
   }
 };
 
@@ -152,6 +169,15 @@ const handleFetchData = async () => {
 
       <div className={classes.boll}></div>
       <div className={classes.myPageButtonCintainer}>
+        {isLoading && <p>Awaiting server response...</p>}
+      {userMessageFromBackend && 'error' in userMessageFromBackend ? (
+          <p>{userMessageFromBackend.error}</p>
+        ) : (
+          <div>
+            <p>{userMessageFromBackend?.message}</p>
+            <p>{userMessageFromBackend?.username}</p>
+          </div>
+        )}
         <button id="myPageLogoutButton" onClick={handleLogout} className={classes.myPageButton} >Log out</button>
         <button id="myPageLogoutButton" onClick={handleFetchData} className={classes.myPageButton} >Fetch data</button>
       </div>

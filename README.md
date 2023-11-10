@@ -1,6 +1,9 @@
 
 ## **Kurs**: Webbsäkerhet analys och implementation
 
+<img src="./websec-react/src/assets/sequence_diagram.png">
+
+
 ### Grupp : 
 
 * Yulia Gutorova
